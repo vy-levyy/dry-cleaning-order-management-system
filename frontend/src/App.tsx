@@ -1,7 +1,12 @@
 import React from 'react';
+import PageRegistration from './pages/PageRegistration';
 
-function App() {
-  return <div></div>;
+const App: React.FunctionComponent = () => {
+  return (
+    <>
+      <PageRegistration />
+    </>
+  );
 }
 
 export default App;
