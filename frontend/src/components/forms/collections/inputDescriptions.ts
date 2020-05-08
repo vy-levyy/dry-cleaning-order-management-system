@@ -1,25 +1,27 @@
 import { InputDescriptions } from "..";
 
+const textTypeClass = 'form-control';
+
 const inputDescriptions: InputDescriptions = {
   firstName: {
     name: 'First name',
     type: 'text',
     tooltip: 'Минимум 1 символ',
-    className: 'form-control'
+    className: textTypeClass
   },
 
   lastName: {
     name: 'Last name',
     type: 'text',
     tooltip: 'Минимум 1 символ',
-    className: 'form-control'
+    className: textTypeClass
   },
 
   email: {
     name: 'Email',
     type: 'email',
     tooltip: 'Пример: tester@test.com',
-    className: 'form-control'
+    className: textTypeClass
   },
 
   password: {
@@ -31,14 +33,14 @@ const inputDescriptions: InputDescriptions = {
       + '\nМинимум 1 большая буква'
       + '\nМинимум 1 маленькая буква'
       + '\nМинимум 1 спец. символ',
-    className: 'form-control'
+    className: textTypeClass
   },
 
   confirmedPassword: {
     name: 'Confirm password',
     type: 'password',
     tooltip: 'Повторите пароль',
-    className: 'form-control'
+    className: textTypeClass
   }
 };
 

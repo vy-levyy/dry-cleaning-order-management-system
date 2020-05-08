@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react'
-import IAppInputProps from '../interfaces';
 import AppInput from '../AppInput';
 import inputDescriptions from '../collections/inputDescriptions';
-
-interface IInputWrapperProps extends IAppInputProps { }
+import { IInputWrapperProps } from '..';
 
 const InputWrapper: FunctionComponent<IInputWrapperProps> = ({
   inputName,
   value,
-  handleChange
+  isValid,
+  handleChange,
+  ...otherAttributes
 }) => {
   return (
     <div className="form-group">
@@ -16,7 +16,9 @@ const InputWrapper: FunctionComponent<IInputWrapperProps> = ({
       <AppInput
         inputName={ inputName }
         value={ value }
+        isValid={ isValid }
         handleChange={ handleChange }
+        { ...otherAttributes }
       />
     </div>
   );

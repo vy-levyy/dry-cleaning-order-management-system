@@ -1,12 +1,8 @@
-import { FunctionComponent, FormHTMLAttributes } from 'react';
-import { FormNames } from '..';
+import { FunctionComponent } from 'react';
+import { IAppFormProps } from '..';
 import forms from '../collections/forms';
 
-interface Props extends FormHTMLAttributes<HTMLFormElement> {
-  type: FormNames;
-}
-
-const AppForm: FunctionComponent<Props> = ({ type }) => {
+const AppForm: FunctionComponent<IAppFormProps> = ({ type }) => {
   return forms[type];
 }
 

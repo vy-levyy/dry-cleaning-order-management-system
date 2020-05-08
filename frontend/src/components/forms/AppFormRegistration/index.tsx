@@ -1,48 +1,43 @@
 import React, {
     FormHTMLAttributes,
     FunctionComponent,
-    useState,
     ChangeEvent
 } from 'react';
 import InputWrapper from '../InputWrapper';
-import formFields from '../collections/inputDescriptions';
-// import * as yup from 'yup';
-//import validationSchemas from '../collections/validationSchemas';
+import isValidInput from '../isValidInput';
+import useInputState from '../hooks/useInputState';
+import handleInputChange from '../handleInputChange';
+import { IAppFormRegistrationProps } from '..';
 
-interface Props extends FormHTMLAttributes<HTMLFormElement> {
-  className?: string;
-}
-
-const AppFormRegistration: FunctionComponent<Props> = ({
+const AppFormRegistration: FunctionComponent<IAppFormRegistrationProps> = ({
   className = '',
   ...otherAttributes
 }) => {
-  const [firstName, setFirstName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmedPassword, setConfirmedPassword] = useState<string>('');
-
-  const handleFirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //const isValid: boolean = validationSchemas.textString.isValidSync(event.target.value);
-
-    setFirstName(event.target.value);
-  }
-
-  const handleLastNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
-  }
-
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  }
+  const firstNameStates = useInputState();
+  const lastNameStates = useInputState();
+  const emailStates = useInputState();
+  const password = useInputState();
+  const confirmedPassword = useInputState();
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
+    const value = event.target.value;
+    const isValidPassword: boolean = isValidInput('password', value);
+
+    password.setValue(value);
+    password.setIsValid(isValidPassword);
+
+    const isValidConfirmedPassword: boolean =
+      isValidInput('confirmedPassword', confirmedPassword.value, value);
+
+    confirmedPassword.setIsValid(isValidConfirmedPassword);
   }
 
   const handleConfirmedPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setConfirmedPassword(event.target.value);
+    const value = event.target.value;
+    const isValid: boolean = isValidInput('confirmedPassword', value, password.value);
+
+    confirmedPassword.setValue(value);
+    confirmedPassword.setIsValid(isValid);
   }
 
   return (
@@ -52,30 +47,35 @@ const AppFormRegistration: FunctionComponent<Props> = ({
     >
       <InputWrapper
         inputName="firstName"
-        value={ firstName }
-        handleChange={ handleFirstNameChange }
+        value={ firstNameStates.value }
+        isValid={ firstNameStates.isValid }
+        handleChange={ (event) => handleInputChange(event, 'firstName', firstNameStates) }
       />
       <InputWrapper
         inputName="lastName"
-        value={ lastName }
-        handleChange={ handleLastNameChange }
+        value={ lastNameStates.value }
+        isValid={ lastNameStates.isValid  }
+        handleChange={ (event) => handleInputChange(event, 'lastName', lastNameStates) }
       />
       <InputWrapper
         inputName="email"
-        value={ email }
-        handleChange={ handleEmailChange }
+        value={ emailStates.value }
+        isValid={ emailStates.isValid  }
+        handleChange={ (event) => handleInputChange(event, 'email', emailStates) }
       />
       <InputWrapper
         inputName="password"
-        value={ password }
+        value={ password.value }
+        isValid={ password.isValid  }
         handleChange={ handlePasswordChange }
       />
       <InputWrapper
         inputName="confirmedPassword"
-        value={ confirmedPassword }
+        value={ confirmedPassword.value }
+        isValid={ confirmedPassword.isValid }
         handleChange={ handleConfirmedPasswordChange }
       />
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="submit" className="btn btn-primary">Sign Up</button>
     </form>
   );
 }

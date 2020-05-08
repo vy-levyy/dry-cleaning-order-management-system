@@ -1,4 +1,9 @@
-import { HTMLAttributes } from "react";
+import {
+  InputHTMLAttributes,
+  ChangeEventHandler,
+  HTMLAttributes
+} from 'react';
+import * as yup from 'yup';
 
 declare namespace Form {
   type FormNames =
@@ -46,13 +51,28 @@ declare namespace Form {
     [key in InputNames]: JSX.Element;
   }
 
-  type ChangeHandlers = {
-    [key in InputNames]: () => void;
+  type ValidationSchemas = {
+    [key in InputNames]: yup.Schema<any> | null;
   }
 
-  type Tooltips = {
-    [key in InputNames]: string[];
+  interface IAppFormProps extends FormHTMLAttributes<HTMLFormElement> {
+    type: FormNames;
   }
+
+  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> {
+    className?: string;
+  }
+
+  interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
+    inputName: InputNames;
+    isValid: boolean;
+    value: string;
+    handleChange: ChangeEventHandler<HTMLInputElement>;
+  }
+
+  interface IInputWrapperProps extends IAppInputProps { }
+
+  type InputValidStatusClass = '' | 'is-valid'| 'is-invalid';
 }
 
 export = Form;
