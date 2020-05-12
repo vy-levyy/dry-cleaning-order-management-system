@@ -1,25 +1,20 @@
 import React, { FunctionComponent } from 'react'
-import AppInput from '../AppInput';
-import inputDescriptions from '../collections/inputDescriptions';
-import { IInputWrapperProps } from '..';
+import { IInputWrapperProps, InputDescriptions } from '..';
+import Input from '../Input';
 
-const InputWrapper: FunctionComponent<IInputWrapperProps> = ({
-  inputName,
-  value,
-  isValid,
-  handleChange,
-  ...otherAttributes
-}) => {
+const inputDescriptions: InputDescriptions = {
+  firstName: 'First name',
+  lastName: 'Last name',
+  email: 'Email',
+  password: 'Password',
+  confirmedPassword: 'Confirm password',
+}
+
+const InputWrapper: FunctionComponent<IInputWrapperProps> = ({ inputName }) => {
   return (
     <div className="form-group">
-      <label>{ inputDescriptions[inputName].name }</label>
-      <AppInput
-        inputName={ inputName }
-        value={ value }
-        isValid={ isValid }
-        handleChange={ handleChange }
-        { ...otherAttributes }
-      />
+      <label>{ inputDescriptions[inputName] }</label>
+      <Input type={ inputName } />
     </div>
   );
 }

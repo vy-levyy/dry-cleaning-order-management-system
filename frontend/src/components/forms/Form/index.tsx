@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
-import { IAppFormProps } from '..';
-import forms from '../collections/forms';
+import { IFormProps } from '..';
+import forms from './formElements';
 
-const AppForm: FunctionComponent<IAppFormProps> = ({ type }) => {
+const Form: FunctionComponent<IFormProps> = ({ type }) => {
   return forms[type];
 }
 
-export default AppForm;
+export default Form;

@@ -31,16 +31,15 @@ declare namespace Form {
   >;
 
   type InputDescriptions = {
-    [key in InputNames]: {
-      name: string;
-      type: string;
-      tooltip: string;
-      className: string;
-    }
+    [key in InputNames]: string;
   }
 
   type RegistrationInputs = {
     [key in RegistrationInputNames]: JSX.Element;
+  }
+
+  type RegistrationState = {
+    [key in RegistrationInputNames]: string;
   }
 
   type InputWrappers = {
@@ -55,22 +54,32 @@ declare namespace Form {
     [key in InputNames]: yup.Schema<any> | null;
   }
 
-  interface IAppFormProps extends FormHTMLAttributes<HTMLFormElement> {
+  interface IFormProps {
     type: FormNames;
   }
 
-  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> {
-    className?: string;
+  interface IInputProps {
+    type: InputNames;
   }
+  
+  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> { }
 
   interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    inputName: InputNames;
-    isValid: boolean;
     value: string;
-    handleChange: ChangeEventHandler<HTMLInputElement>;
+    isValid: boolean;
+    setValue: Function;
+    setIsValid: Function;
   }
 
-  interface IInputWrapperProps extends IAppInputProps { }
+  interface IAppInputFirstNameProps extends IAppInputProps { }
+  interface IAppInputLastNameProps extends IAppInputProps { }
+  interface IAppInputEmailProps extends IAppInputProps { }
+  interface IAppInputPasswordProps extends IAppInputProps { }
+  interface IAppInputConfirmedPasswordProps extends IAppInputProps { }
+  
+  interface IInputWrapperProps { 
+    inputName: InputNames;
+  }
 
   type InputValidStatusClass = '' | 'is-valid'| 'is-invalid';
 }
