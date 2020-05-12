@@ -1,6 +1,6 @@
 import React from 'react';
 import { Forms } from '..';
-import AppFormRegistration from '../AppFormRegistration';
+import AppFormRegistration from './AppFormRegistration';
 
 const forms: Forms = {
   registration: <AppFormRegistration />,
