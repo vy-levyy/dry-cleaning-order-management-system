@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { IAppInputPasswordProps, InputValidStatusClass } from '../..';
 import { setPasswordValue, setIsValidPassword } from '../../../../redux/forms/registration/actions';
-import isValidInput from '../../other/isValidInput';
+import isValidInput from '../../scripts/isValidInput';
 
 const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, isValid, setValue, setIsValid }) => {
   let validStatusClass: InputValidStatusClass = '';
@@ -13,7 +13,7 @@ const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, is
 
   const handleChange = (event: any) => {
     setValue(event.target.value);
-    setIsValid(isValidInput('password'));
+    setIsValid(isValidInput(event.target.name));
   }
 
   const title = 
@@ -25,6 +25,7 @@ const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, is
 
   return (
     <input
+      name="password"
       type="password"
       className={ `form-control ${ validStatusClass }` }
       value={ value }
@@ -39,8 +40,8 @@ const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, is
 
 const mapStateToProps = (state: any) => {
   return {
-    value: state.registration.password.value,
-    isValid: state.registration.password.isValid
+    value: state.form.registration.password.value,
+    isValid: state.form.registration.password.isValid
   }
 }
 

@@ -15,4 +15,3 @@ const inputs: Inputs = {
 };
 
 export default inputs;
-

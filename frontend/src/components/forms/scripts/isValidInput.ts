@@ -13,7 +13,7 @@ import { InputNames } from "..";
 // }
 
 const isValidInput = (inputName: InputNames): boolean => {
-  const { registration } = store.getState();
+  const { form: { registration } } = store.getState();
 
   if (validationSchemas[inputName]) {
     return validationSchemas[inputName]!.isValidSync(registration[inputName].value);

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { IAppInputEmailProps, InputValidStatusClass } from '../..';
 import { setEmailValue, setIsValidEmail } from '../../../../redux/forms/registration/actions';
-import isValidInput from '../../other/isValidInput';
+import isValidInput from '../../scripts/isValidInput';
 
 const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({ value, isValid, setValue, setIsValid }) => {
   let validStatusClass: InputValidStatusClass = '';
@@ -13,11 +13,12 @@ const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({ value, isValid,
 
   const handleChange = (event: any) => {
     setValue(event.target.value);
-    setIsValid(isValidInput('email'));
+    setIsValid(isValidInput(event.target.name));
   }
 
   return (
     <input
+      name="email"
       type="email"
       className={ `form-control ${ validStatusClass }` }
       value={ value }
@@ -32,8 +33,8 @@ const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({ value, isValid,
 
 const mapStateToProps = (state: any) => {
   return {
-    value: state.registration.email.value,
-    isValid: state.registration.email.isValid
+    value: state.form.registration.email.value,
+    isValid: state.form.registration.email.isValid
   }
 }
 

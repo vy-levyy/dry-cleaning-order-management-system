@@ -7,7 +7,7 @@ import { IAppFormRegistrationProps } from '../..';
 const AppFormRegistration: FunctionComponent<IAppFormRegistrationProps> = ({ ...attributes }) => {
   return (
     <form
-      className={ 'col-10 col-md-8 col-lg-6 col-xl-4' }
+      className="col-10 col-md-8 col-lg-6 col-xl-4"
       { ...attributes }
     >
       <InputWrapper inputName="firstName" />

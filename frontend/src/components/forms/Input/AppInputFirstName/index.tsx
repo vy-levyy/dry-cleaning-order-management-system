@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { IAppInputFirstNameProps, InputValidStatusClass } from '../..';
 import { setFirstNameValue, setIsValidFirstName } from '../../../../redux/forms/registration/actions';
-import isValidInput from '../../other/isValidInput';
+import isValidInput from '../../scripts/isValidInput';
 
 const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({ value, isValid, setValue, setIsValid }) => {
   let validStatusClass: InputValidStatusClass = '';
@@ -13,11 +13,12 @@ const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({ value, 
 
   const handleChange = (event: any) => {
     setValue(event.target.value);
-    setIsValid(isValidInput('firstName'));
+    setIsValid(isValidInput(event.target.name));
   }
 
   return (
     <input
+      name="firstName"
       type="text"
       className={ `form-control ${ validStatusClass }` }
       value={ value }
@@ -32,14 +33,19 @@ const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({ value, 
 
 const mapStateToProps = (state: any) => {
   return {
-    value: state.registration.firstName.value,
-    isValid: state.registration.firstName.isValid
+    value: state.form.registration.firstName.value,
+    isValid: state.form.registration.firstName.isValid
   }
 }
 
-const mapDispatchToProps = {
-  setValue: setFirstNameValue,
-  setIsValid: setIsValidFirstName
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setValue: (value: string) => dispatch(setFirstNameValue(value)),
+    setIsValid: (value: boolean) => dispatch(setIsValidFirstName(value))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputFirstName);
+
+// export default AppInputFirstName;

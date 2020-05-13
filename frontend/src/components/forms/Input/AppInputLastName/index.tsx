@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { IAppInputLastNameProps, InputValidStatusClass } from '../..';
 import { setLastNameValue, setIsValidLastName } from '../../../../redux/forms/registration/actions';
-import isValidInput from '../../other/isValidInput';
+import isValidInput from '../../scripts/isValidInput';
 
 const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({ value, isValid, setValue, setIsValid }) => {
   let validStatusClass: InputValidStatusClass = '';
@@ -13,11 +13,12 @@ const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({ value, is
 
   const handleChange = (event: any) => {
     setValue(event.target.value);
-    setIsValid(isValidInput('lastName'));
+    setIsValid(isValidInput(event.target.name));
   }
 
   return (
     <input
+      name="lastName"
       type="text"
       className={ `form-control ${ validStatusClass }` }
       value={ value }
@@ -32,8 +33,8 @@ const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({ value, is
 
 const mapStateToProps = (state: any) => {
   return {
-    value: state.registration.lastName.value,
-    isValid: state.registration.lastName.isValid
+    value: state.form.registration.lastName.value,
+    isValid: state.form.registration.lastName.isValid
   }
 }
 
