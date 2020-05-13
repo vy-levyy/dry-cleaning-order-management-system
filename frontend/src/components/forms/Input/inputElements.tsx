@@ -1,17 +1,21 @@
 import React from 'react';
-import { Inputs } from '..';
+import { Inputs, FormNames } from '..';
 import AppInputFirstName from './AppInputFirstName';
 import AppInputLastName from './AppInputLastName';
 import AppInputEmail from './AppInputEmail';
 import AppInputPassword from './AppInputPassword';
 import AppInputConfirmedPassword from './AppInputConfirmedPassword';
 
-const inputs: Inputs = {
-  firstName: <AppInputFirstName />,
-  lastName: <AppInputLastName />,
-  email: <AppInputEmail />,
-  password: <AppInputPassword />,
-  confirmedPassword: <AppInputConfirmedPassword />
-};
+const inputElements = (formName: FormNames) => {
+  const inputs: Inputs = {
+    firstName: <AppInputFirstName formName={ formName }/>,
+    lastName: <AppInputLastName formName={ formName }/>,
+    email: <AppInputEmail formName={ formName }/>,
+    password: <AppInputPassword formName={ formName }/>,
+    confirmedPassword: <AppInputConfirmedPassword formName={ formName }/>
+  };
 
-export default inputs;
+  return inputs;
+}
+
+export default inputElements;

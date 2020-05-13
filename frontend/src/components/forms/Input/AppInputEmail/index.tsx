@@ -1,19 +1,29 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
-import { IAppInputEmailProps, InputValidStatusClass } from '../..';
-import { setEmailValue, setIsValidEmail } from '../../../../redux/forms/registration/actions';
+import { IAppInputEmailProps, InputValidStatusClass, InputNames } from '../..';
 import isValidInput from '../../scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
+import appInputMapDispatchToPropsWrapper from '../../scripts/appInputMapDispatchToPropsWrapper';
+import appInputMapStateToPropsWrapper from '../../scripts/appInputMapStateToPropsWrapper';
 
-const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({ value, isValid, setValue, setIsValid }) => {
+const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({
+  value,
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm,
+  formName
+}) => {
   let validStatusClass: InputValidStatusClass = '';
 
   if (value) {
     validStatusClass = isValid ? 'is-valid' : 'is-invalid';
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput(event.target.name));
+    setIsValid(isValidInput(formName, event.target.name as InputNames));
+    setIsValidForm(isValidForm(formName));
   }
 
   return (
@@ -31,16 +41,7 @@ const AppInputEmail: FunctionComponent<IAppInputEmailProps> = ({ value, isValid,
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    value: state.form.registration.email.value,
-    isValid: state.form.registration.email.isValid
-  }
-}
-
-const mapDispatchToProps = {
-  setValue: setEmailValue,
-  setIsValid: setIsValidEmail
-}
+const mapStateToProps = appInputMapStateToPropsWrapper('email');
+const mapDispatchToProps = appInputMapDispatchToPropsWrapper('email');
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputEmail);

@@ -2,9 +2,8 @@ import React from 'react';
 import { Forms } from '..';
 import AppFormRegistration from './AppFormRegistration';
 
-const forms: Forms = {
-  registration: <AppFormRegistration />,
-  authorization: <form></form>,
+const formElements: Forms = {
+  registration: <AppFormRegistration />
 } as const;
 
-export default forms;
+export default formElements;

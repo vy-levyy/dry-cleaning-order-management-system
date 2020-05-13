@@ -10,11 +10,11 @@ const inputDescriptions: InputDescriptions = {
   confirmedPassword: 'Confirm password',
 }
 
-const InputWrapper: FunctionComponent<IInputWrapperProps> = ({ inputName }) => {
+const InputWrapper: FunctionComponent<IInputWrapperProps> = ({ formName, inputName }) => {
   return (
     <div className="form-group">
       <label>{ inputDescriptions[inputName] }</label>
-      <Input type={ inputName } />
+      <Input formName={ formName } inputName={ inputName } />
     </div>
   );
 }

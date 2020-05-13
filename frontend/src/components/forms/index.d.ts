@@ -7,7 +7,6 @@ import * as yup from 'yup';
 
 declare namespace Form {
   type FormNames =
-    | 'authorization'
     | 'registration';
 
   type Forms = {
@@ -59,27 +58,32 @@ declare namespace Form {
   }
 
   interface IInputProps {
-    type: InputNames;
+    formName: FormNames;
+    inputName: InputNames;
   }
-  
-  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> { }
+
+  type IInputWrapperProps = IInputProps;
+
+  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> {
+    isValid: boolean;
+  }
 
   interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
     value: string;
     isValid: boolean;
     setValue: Function;
     setIsValid: Function;
+    setIsValidForm: Function;
+    formName: FormNames;
   }
 
   interface IAppInputFirstNameProps extends IAppInputProps { }
   interface IAppInputLastNameProps extends IAppInputProps { }
   interface IAppInputEmailProps extends IAppInputProps { }
-  interface IAppInputPasswordProps extends IAppInputProps { }
-  interface IAppInputConfirmedPasswordProps extends IAppInputProps { }
-  
-  interface IInputWrapperProps { 
-    inputName: InputNames;
+  interface IAppInputPasswordProps extends IAppInputProps { 
+    setIsValidConfirmedPassword: Function;
   }
+  interface IAppInputConfirmedPasswordProps extends IAppInputProps { }
 
   type InputValidStatusClass = '' | 'is-valid'| 'is-invalid';
 }

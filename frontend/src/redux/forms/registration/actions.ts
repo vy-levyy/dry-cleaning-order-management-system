@@ -1,3 +1,6 @@
+import { InputNames } from "../../../components/forms";
+import { RegistrationActionTypes } from "../..";
+
 export const CHANGE_FIRST_NAME_VALUE = 'CHANGE_FIRST_NAME_VALUE';
 export const CHANGE_IS_VALID_FIRST_NAME = 'CHANGE_IS_VALID_FIRST_NAME';
 
@@ -13,47 +16,47 @@ export const CHANGE_IS_VALID_PASSWORD = 'CHANGE_IS_VALID_PASSWORD';
 export const CHANGE_CONFIRMED_PASSWORD_VALUE = 'CHANGE_CONFIRMED_PASSWORD_VALUE';
 export const CHANGE_IS_VALID_CONFIRMED_PASSWORD = 'CHANGE_IS_VALID_CONFIRMED_PASSWORD';
 
-export const setFirstNameValue = (value: string) => ({
-  type: CHANGE_FIRST_NAME_VALUE,
-  payload: value
-});
-export const setIsValidFirstName = (isValid: boolean) => ({
-  type: CHANGE_IS_VALID_FIRST_NAME,
-  payload: isValid
-});
+export const CHANGE_IS_VALID = 'CHANGE_IS_VALID';
 
-export const setLastNameValue = (value: string) => ({
-  type: CHANGE_LAST_NAME_VALUE,
-  payload: value
-});
-export const setIsValidLastName = (isValid: boolean) => ({
-  type: CHANGE_IS_VALID_LAST_NAME,
-  payload: isValid
-});
+const actionTypes: RegistrationActionTypes = {
+  fields: {
+    firstName: {
+      value: CHANGE_FIRST_NAME_VALUE,
+      isValid: CHANGE_IS_VALID_FIRST_NAME
+    },
+    lastName: {
+      value: CHANGE_LAST_NAME_VALUE,
+      isValid: CHANGE_IS_VALID_LAST_NAME
+    },
+    email: {
+      value: CHANGE_EMAIL_VALUE,
+      isValid: CHANGE_IS_VALID_EMAIL
+    },
+    password: {
+      value: CHANGE_PASSWORD_VALUE,
+      isValid: CHANGE_IS_VALID_PASSWORD
+    },
+    confirmedPassword: {
+      value: CHANGE_CONFIRMED_PASSWORD_VALUE,
+      isValid: CHANGE_IS_VALID_CONFIRMED_PASSWORD
+    }
+  },
+  isValid: CHANGE_IS_VALID
+}
 
-export const setEmailValue = (value: string) => ({
-  type: CHANGE_EMAIL_VALUE,
-  payload: value
-});
-export const setIsValidEmail = (isValid: boolean) => ({
-  type: CHANGE_IS_VALID_EMAIL,
-  payload: isValid
-});
+export default {
+  setValue: (inputName: InputNames, value: string) => ({
+      type: actionTypes.fields[inputName].value,
+      payload: value
+  }),
 
-export const setPasswordValue = (value: string) => ({
-  type: CHANGE_PASSWORD_VALUE,
-  payload: value
-});
-export const setIsValidPassword = (isValid: boolean) => ({
-  type: CHANGE_IS_VALID_PASSWORD,
-  payload: isValid
-});
+  setIsValid: (inputName: InputNames, isValid: boolean) => ({
+    type: actionTypes.fields[inputName].isValid,
+    payload: isValid
+  }),
 
-export const setConfirmedPasswordValue = (value: string) => ({
-  type: CHANGE_CONFIRMED_PASSWORD_VALUE,
-  payload: value
-});
-export const setIsValidConfirmedPassword = (isValid: boolean) => ({
-  type: CHANGE_IS_VALID_CONFIRMED_PASSWORD,
-  payload: isValid
-});
+  setIsValidForm: (isValid: boolean) => ({
+    type: actionTypes.isValid,
+    payload: isValid
+  })
+}

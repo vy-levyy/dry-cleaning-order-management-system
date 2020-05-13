@@ -5,7 +5,9 @@ const PageRegistration: React.FunctionComponent = () => {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <Form type="registration" />
+        <div className="col">
+          <Form type="registration" />
+        </div>
       </div>
     </div>
   );

@@ -1,19 +1,33 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
-import { IAppInputPasswordProps, InputValidStatusClass } from '../..';
-import { setPasswordValue, setIsValidPassword } from '../../../../redux/forms/registration/actions';
-import isValidInput from '../../other/isValidInput';
+import { IAppInputPasswordProps, InputValidStatusClass, InputNames } from '../..';
+import { InputOwnProps } from '../../../../redux';
+import isValidInput from '../../scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
+// import appInputMapDispatchToPropsWrapper from '../../scripts/appInputMapDispatchToPropsWrapper';
+import formActions from '../../../../redux/forms/actions';
+import appInputMapStateToPropsWrapper from '../../scripts/appInputMapStateToPropsWrapper';
 
-const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, isValid, setValue, setIsValid }) => {
+const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({
+  value,
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidConfirmedPassword,
+  setIsValidForm,
+  formName
+}) => {
   let validStatusClass: InputValidStatusClass = '';
 
   if (value) {
     validStatusClass = isValid ? 'is-valid' : 'is-invalid';
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput('password'));
+    setIsValid(isValidInput(formName, event.target.name as InputNames));
+    setIsValidConfirmedPassword(isValidInput(formName, 'confirmedPassword'));
+    setIsValidForm(isValidForm(formName));
   }
 
   const title = 
@@ -25,6 +39,7 @@ const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, is
 
   return (
     <input
+      name="password"
       type="password"
       className={ `form-control ${ validStatusClass }` }
       value={ value }
@@ -37,16 +52,16 @@ const AppInputPassword: FunctionComponent<IAppInputPasswordProps> = ({ value, is
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    value: state.form.registration.password.value,
-    isValid: state.form.registration.password.isValid
-  }
-}
+const mapStateToProps = appInputMapStateToPropsWrapper('password');
 
-const mapDispatchToProps = {
-  setValue: setPasswordValue,
-  setIsValid: setIsValidPassword
+// пока что не получается в отделный файл вынести
+const mapDispatchToProps = (dispatch: Function, { formName }: InputOwnProps) => {
+  return {
+    setValue: (value: string) => dispatch(formActions[formName].setValue('password', value)),
+    setIsValid: (value: boolean) => dispatch(formActions[formName].setIsValid('password', value)),
+    setIsValidForm: (value: boolean) => dispatch(formActions[formName].setIsValidForm(value)),
+    setIsValidConfirmedPassword: (value: boolean) => dispatch(formActions[formName].setIsValid('confirmedPassword', value)),
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputPassword);

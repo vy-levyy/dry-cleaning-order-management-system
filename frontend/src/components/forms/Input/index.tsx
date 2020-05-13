@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react';
 import { IInputProps } from '..';
-import inputs from './inputElements';
+import inputElements from './inputElements';
 
-const Input: FunctionComponent<IInputProps> = ({ type }) => {
-  return inputs[type];
+const Input: FunctionComponent<IInputProps> = ({ formName, inputName }) => {
+  return inputElements(formName)[inputName];
 }
 
 export default Input;

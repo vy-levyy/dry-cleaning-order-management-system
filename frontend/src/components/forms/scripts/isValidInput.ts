@@ -1,24 +1,14 @@
 import validationSchemas from "./validationSchemas";
 import store from '../../../store';
-import { InputNames } from "..";
+import { InputNames, FormNames } from "..";
 
-// const isValidInput = (inputName: InputNames, value: string, password?: string): boolean => {
-//   if (validationSchemas[inputName]) {
-//     return validationSchemas[inputName]!.isValidSync(value);
-//   } else if (inputName === 'confirmedPassword') {
-//     return value === password;
-//   }
-
-//   return true;
-// }
-
-const isValidInput = (inputName: InputNames): boolean => {
-  const { form: { registration } } = store.getState();
+const isValidInput = (formName: FormNames, inputName: InputNames): boolean => {
+  const fields = store.getState().form[formName].fields;
 
   if (validationSchemas[inputName]) {
-    return validationSchemas[inputName]!.isValidSync(registration[inputName].value);
+    return validationSchemas[inputName]!.isValidSync(fields[inputName].value);
   } else if (inputName === 'confirmedPassword') {
-    return registration[inputName].value === registration.password.value;
+    return fields[inputName].value === fields.password.value;
   }
 
   return true;

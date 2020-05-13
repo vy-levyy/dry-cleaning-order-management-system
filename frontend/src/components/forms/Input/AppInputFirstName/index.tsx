@@ -1,19 +1,29 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
-import { IAppInputFirstNameProps, InputValidStatusClass } from '../..';
-import { setFirstNameValue, setIsValidFirstName } from '../../../../redux/forms/registration/actions';
+import { IAppInputFirstNameProps, InputValidStatusClass, InputNames } from '../..';
 import isValidInput from '../../scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
+import appInputMapDispatchToPropsWrapper from '../../scripts/appInputMapDispatchToPropsWrapper';
+import appInputMapStateToPropsWrapper from '../../scripts/appInputMapStateToPropsWrapper';
 
-const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({ value, isValid, setValue, setIsValid }) => {
+const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({
+  value,
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm,
+  formName
+}) => {
   let validStatusClass: InputValidStatusClass = '';
 
   if (value) {
     validStatusClass = isValid ? 'is-valid' : 'is-invalid';
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput(event.target.name));
+    setIsValid(isValidInput(formName, event.target.name as InputNames));
+    setIsValidForm(isValidForm(formName));
   }
 
   return (
@@ -31,21 +41,7 @@ const AppInputFirstName: FunctionComponent<IAppInputFirstNameProps> = ({ value, 
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    value: state.form.registration.firstName.value,
-    isValid: state.form.registration.firstName.isValid
-  }
-}
-
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    setValue: (value: string) => dispatch(setFirstNameValue(value)),
-    setIsValid: (value: boolean) => dispatch(setIsValidFirstName(value))
-  }
-}
+const mapStateToProps = appInputMapStateToPropsWrapper('firstName');
+const mapDispatchToProps = appInputMapDispatchToPropsWrapper('firstName');
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputFirstName);
-
-// export default AppInputFirstName;

@@ -1,19 +1,40 @@
-import React, { FunctionComponent } from 'react';
+import React, {
+  FunctionComponent,
+  ChangeEvent
+} from 'react';
+
 import { connect } from 'react-redux';
-import { IAppInputConfirmedPasswordProps, InputValidStatusClass } from '../..';
-import { setConfirmedPasswordValue, setIsValidConfirmedPassword } from '../../../../redux/forms/registration/actions';
+
+import {
+  IAppInputConfirmedPasswordProps,
+  InputValidStatusClass,
+  InputNames
+} from '../..';
+
 import isValidInput from '../../scripts/isValidInput';
 
-const AppInputConfirmedPassword: FunctionComponent<IAppInputConfirmedPasswordProps> = ({ value, isValid, setValue, setIsValid }) => {
+import appInputMapDispatchToPropsWrapper from '../../scripts/appInputMapDispatchToPropsWrapper';
+import isValidForm from '../../scripts/isValidForm';
+import appInputMapStateToPropsWrapper from '../../scripts/appInputMapStateToPropsWrapper';
+
+const AppInputConfirmedPassword: FunctionComponent<IAppInputConfirmedPasswordProps> = ({
+  value,
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm,
+  formName
+}) => {
   let validStatusClass: InputValidStatusClass = '';
 
   if (value) {
     validStatusClass = isValid ? 'is-valid' : 'is-invalid';
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput(event.target.name));
+    setIsValid(isValidInput(formName, event.target.name as InputNames));
+    setIsValidForm(isValidForm(formName));
   }
 
   return (
@@ -31,16 +52,7 @@ const AppInputConfirmedPassword: FunctionComponent<IAppInputConfirmedPasswordPro
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    value: state.form.registration.confirmedPassword.value,
-    isValid: state.form.registration.confirmedPassword.isValid
-  }
-}
-
-const mapDispatchToProps = {
-  setValue: setConfirmedPasswordValue,
-  setIsValid: setIsValidConfirmedPassword
-}
+const mapStateToProps = appInputMapStateToPropsWrapper('confirmedPassword');
+const mapDispatchToProps = appInputMapDispatchToPropsWrapper('confirmedPassword');
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputConfirmedPassword);

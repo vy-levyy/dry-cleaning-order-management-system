@@ -1,19 +1,29 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
-import { IAppInputLastNameProps, InputValidStatusClass } from '../..';
-import { setLastNameValue, setIsValidLastName } from '../../../../redux/forms/registration/actions';
+import { IAppInputLastNameProps, InputValidStatusClass, InputNames } from '../..';
 import isValidInput from '../../scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
+import appInputMapDispatchToPropsWrapper from '../../scripts/appInputMapDispatchToPropsWrapper';
+import appInputMapStateToPropsWrapper from '../../scripts/appInputMapStateToPropsWrapper';
 
-const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({ value, isValid, setValue, setIsValid }) => {
+const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({
+  value,
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm,
+  formName
+}) => {
   let validStatusClass: InputValidStatusClass = '';
 
   if (value) {
     validStatusClass = isValid ? 'is-valid' : 'is-invalid';
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput(event.target.name));
+    setIsValid(isValidInput(formName, event.target.name as InputNames));
+    setIsValidForm(isValidForm(formName));
   }
 
   return (
@@ -31,16 +41,7 @@ const AppInputLastName: FunctionComponent<IAppInputLastNameProps> = ({ value, is
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    value: state.form.registration.lastName.value,
-    isValid: state.form.registration.lastName.isValid
-  }
-}
-
-const mapDispatchToProps = {
-  setValue: setLastNameValue,
-  setIsValid: setIsValidLastName
-}
+const mapStateToProps = appInputMapStateToPropsWrapper('lastName');
+const mapDispatchToProps = appInputMapDispatchToPropsWrapper('lastName');
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppInputLastName);
