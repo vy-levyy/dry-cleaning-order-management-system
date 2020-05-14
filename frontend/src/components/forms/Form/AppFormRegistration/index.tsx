@@ -6,14 +6,23 @@ import { connect } from 'react-redux';
 import InputWrapper from '../../InputWrapper';
 import { IAppFormRegistrationProps } from '../..';
 import { State } from '../../../../redux';
+import { userApi } from '../../../../controller/api';
 
 const AppFormRegistration: FunctionComponent<IAppFormRegistrationProps> = ({
   isValid,
+  user,
   ...attributes
 }) => {
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log('success');
+
+    userApi.signup(user)
+      .then((response: any) => {
+        console.log(response);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      })
   }
 
   return (
@@ -46,8 +55,17 @@ const AppFormRegistration: FunctionComponent<IAppFormRegistrationProps> = ({
 }
 
 const mapStateToProps = (state: State) => {
+  const { registration, registration: { fields }} = state.form;
+
   return {
-    isValid: state.form.registration.isValid
+    isValid: registration.isValid,
+    user: {
+      firstName: String(fields.firstName.value),
+      lastName: String(fields.lastName.value),
+      email: String(fields.email.value),
+      password: String(fields.password.value),
+      wantBeAdmin: Boolean(fields.wantBeAdmin.value),
+    }
   }
 }
 

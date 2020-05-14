@@ -66,8 +66,10 @@ declare namespace Form {
 
   type IInputWrapperProps = IInputProps;
 
-  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> {
+  interface IAppFormProps extends FormHTMLAttributes<HTMLFormElement> { }
+  interface IAppFormRegistrationProps extends IAppFormProps {
     isValid: boolean;
+    user: Api.User;
   }
 
   interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
