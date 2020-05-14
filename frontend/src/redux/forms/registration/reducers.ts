@@ -15,6 +15,8 @@ import {
   CHANGE_CONFIRMED_PASSWORD_VALUE,
   CHANGE_IS_VALID_CONFIRMED_PASSWORD,
 
+  CHANGE_WANT_BE_ADMIN_VALUE,
+
   CHANGE_IS_VALID
 } from "./actions";
 
@@ -40,6 +42,10 @@ const defaultState: FormRegistrationState = {
       value: '',
       isValid: false
     },
+    wantBeAdmin: {
+      value: false,
+      isValid: true
+    }
   },
   isValid: false
 };
@@ -162,6 +168,18 @@ export const registrationReducer = (state: FormRegistrationState = defaultState,
           confirmedPassword: {
             ...state.fields.confirmedPassword,
             isValid: action.payload
+          }
+        }
+      };
+
+    case CHANGE_WANT_BE_ADMIN_VALUE:
+      return {
+        ...state,
+        fields: {
+          ...state.fields,
+          wantBeAdmin: {
+            ...state.fields.wantBeAdmin,
+            value: action.payload
           }
         }
       };

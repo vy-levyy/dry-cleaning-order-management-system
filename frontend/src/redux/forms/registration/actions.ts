@@ -16,6 +16,8 @@ export const CHANGE_IS_VALID_PASSWORD = 'CHANGE_IS_VALID_PASSWORD';
 export const CHANGE_CONFIRMED_PASSWORD_VALUE = 'CHANGE_CONFIRMED_PASSWORD_VALUE';
 export const CHANGE_IS_VALID_CONFIRMED_PASSWORD = 'CHANGE_IS_VALID_CONFIRMED_PASSWORD';
 
+export const CHANGE_WANT_BE_ADMIN_VALUE = 'CHANGE_WANT_BE_ADMIN_VALUE';
+
 export const CHANGE_IS_VALID = 'CHANGE_IS_VALID';
 
 const actionTypes: RegistrationActionTypes = {
@@ -39,13 +41,17 @@ const actionTypes: RegistrationActionTypes = {
     confirmedPassword: {
       value: CHANGE_CONFIRMED_PASSWORD_VALUE,
       isValid: CHANGE_IS_VALID_CONFIRMED_PASSWORD
+    },
+    wantBeAdmin: {
+      value: CHANGE_WANT_BE_ADMIN_VALUE,
+      isValid: null
     }
   },
   isValid: CHANGE_IS_VALID
 }
 
 export default {
-  setValue: (inputName: InputNames, value: string) => ({
+  setValue: (inputName: InputNames, value: string | boolean) => ({
       type: actionTypes.fields[inputName].value,
       payload: value
   }),

@@ -8,6 +8,7 @@ const inputDescriptions: InputDescriptions = {
   email: 'Email',
   password: 'Password',
   confirmedPassword: 'Confirm password',
+  wantBeAdmin: 'Are you want to be admin?',
 }
 
 const InputWrapper: FunctionComponent<IInputWrapperProps> = ({ formName, inputName }) => {

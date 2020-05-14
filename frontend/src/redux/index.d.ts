@@ -10,7 +10,7 @@ declare namespace Redux {
   type FormRegistrationState = {
     fields: {
       [key in Form.RegistrationInputNames]: {
-        value: string;
+        value: string | boolean;
         isValid: boolean;
       }
     },
@@ -19,9 +19,9 @@ declare namespace Redux {
 
   type RegistrationActionTypes = {
     fields: {
-      [key in InputNames]: {
+      [key in Form.RegistrationInputNames]: {
         value: string;
-        isValid: string;
+        isValid: string | null;
       }
     }
     isValid: string;

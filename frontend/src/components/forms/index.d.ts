@@ -18,7 +18,8 @@ declare namespace Form {
     | 'lastName'
     | 'email'
     | 'password'
-    | 'confirmedPassword';
+    | 'confirmedPassword'
+    | 'wantBeAdmin';
 
   type RegistrationInputNames = Extract<
     InputNames,
@@ -27,6 +28,7 @@ declare namespace Form {
     | 'email'
     | 'password'
     | 'confirmedPassword'
+    | 'wantBeAdmin'
   >;
 
   type InputDescriptions = {
@@ -69,21 +71,25 @@ declare namespace Form {
   }
 
   interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    value: string;
-    isValid: boolean;
+    value: string | boolean;
     setValue: Function;
+  }
+
+  interface IAppInputWithValidationProps extends IAppInputProps {
+    isValid: boolean;
     setIsValid: Function;
     setIsValidForm: Function;
     formName: FormNames;
   }
 
-  interface IAppInputFirstNameProps extends IAppInputProps { }
-  interface IAppInputLastNameProps extends IAppInputProps { }
-  interface IAppInputEmailProps extends IAppInputProps { }
-  interface IAppInputPasswordProps extends IAppInputProps { 
+  interface IAppInputWantBeAdminProps extends IAppInputProps {}
+  interface IAppInputFirstNameProps extends IAppInputWithValidationProps { }
+  interface IAppInputLastNameProps extends IAppInputWithValidationProps { }
+  interface IAppInputEmailProps extends IAppInputWithValidationProps { }
+  interface IAppInputPasswordProps extends IAppInputWithValidationProps { 
     setIsValidConfirmedPassword: Function;
   }
-  interface IAppInputConfirmedPasswordProps extends IAppInputProps { }
+  interface IAppInputConfirmedPasswordProps extends IAppInputWithValidationProps { }
 
   type InputValidStatusClass = '' | 'is-valid'| 'is-invalid';
 }

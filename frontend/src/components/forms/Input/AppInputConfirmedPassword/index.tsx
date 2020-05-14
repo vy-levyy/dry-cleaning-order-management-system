@@ -42,7 +42,7 @@ const AppInputConfirmedPassword: FunctionComponent<IAppInputConfirmedPasswordPro
       name="confirmedPassword"
       type="password"
       className={ `form-control ${ validStatusClass }` }
-      value={ value }
+      value={ String(value) }
       data-toggle="tooltip"
       data-placement="top"
       data-trigger="focus"

@@ -26,6 +26,7 @@ const AppFormRegistration: FunctionComponent<IAppFormRegistrationProps> = ({
       <InputWrapper formName="registration" inputName="email" />
       <InputWrapper formName="registration" inputName="password" />
       <InputWrapper formName="registration" inputName="confirmedPassword" />
+      <InputWrapper formName="registration" inputName="wantBeAdmin" />
       <div className="row text-center">
         <div className="col">
           <button
