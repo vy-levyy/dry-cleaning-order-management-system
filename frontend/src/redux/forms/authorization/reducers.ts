@@ -1,25 +1,17 @@
 import {
   CHANGE_EMAIL_VALUE,
-  CHANGE_IS_VALID_EMAIL,
-
   CHANGE_PASSWORD_VALUE,
-  CHANGE_IS_VALID_PASSWORD,
-
-  CHANGE_IS_VALID
 } from "./actions";
 
 const defaultState: Redux.FormStateAuthorization = {
   fields: {
     email: {
-      value: '',
-      isValid: false
+      value: ''
     },
     password: {
-      value: '',
-      isValid: false
+      value: ''
     }
-  },
-  isValid: false
+  }
 };
 
 export const authorizationReducer = (state: Redux.FormStateAuthorization = defaultState, action: any) => {
@@ -36,18 +28,6 @@ export const authorizationReducer = (state: Redux.FormStateAuthorization = defau
         }
       };
 
-    case CHANGE_IS_VALID_EMAIL:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          email: {
-            ...state.fields.email,
-            isValid: action.payload
-          }
-        }
-      };
-
     case CHANGE_PASSWORD_VALUE:
       return {
         ...state,
@@ -58,24 +38,6 @@ export const authorizationReducer = (state: Redux.FormStateAuthorization = defau
             value: action.payload
           }
         }
-      };
-
-    case CHANGE_IS_VALID_PASSWORD:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          password: {
-            ...state.fields.password,
-            isValid: action.payload
-          }
-        }
-      };
-
-    case CHANGE_IS_VALID:
-      return {
-        ...state,
-        isValid: action.payload
       };
   }
 

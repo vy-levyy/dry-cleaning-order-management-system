@@ -3,7 +3,7 @@ import { userApi } from '../../../../controller/api';
 import InputWrapper from './InputWrapper';
 import { AxiosResponse, AxiosError } from 'axios';
 
-const AppFormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> = ({
+const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> = ({
   user,
   ...attributes
 }) => {
@@ -37,11 +37,11 @@ const AppFormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps
             Sign In
           </button>
           <a className="nav-link" href="/registration">Sign Up</a>
-          <a className="nav-link" href="/registration">Password recovery</a>
+          <a className="nav-link" href="/request-update-password">Password recovery</a>
         </div>
       </div>
     </form>
   );
 }
 
-export default AppFormAuthorization;
+export default FormAuthorization;

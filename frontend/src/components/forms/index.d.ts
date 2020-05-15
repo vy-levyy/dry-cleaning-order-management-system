@@ -8,7 +8,8 @@ import * as yup from 'yup';
 declare namespace Form {
   type FormTypes = 
     | 'registration'
-    | 'authorization';
+    | 'authorization'
+    | 'passwordRequestUpdate';
 
   type Forms = {
     readonly [key in FormTypes]: JSX.Element;
@@ -36,6 +37,10 @@ declare namespace Form {
     | 'confirmedPassword'
     | 'wantBeAdmin'
   >;
+  type InputTypesPasswordRequestUpdate = Extract<
+    InputTypes,
+    | 'email'
+  >;
 
 
   type Inputs = {
@@ -47,15 +52,21 @@ declare namespace Form {
   type InputsRegistration = {
     readonly [key in InputTypesRegistration]: JSX.Element;
   }
+  type InputsPasswordRequestUpdate = {
+    readonly [key in InputTypesPasswordRequestUpdate]: JSX.Element;
+  }
 
 
   interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> { }
   interface IFormAuthorizationProps extends IFormProps {
-    user: Api.AuthorizationUser;
+    user: Api.UserAuthorization;
   }
   interface IFormRegistrationProps extends IFormProps {
-    user: Api.RegistrationUser;
+    user: Api.UserRegistration;
     isValid: boolean;
+  }
+  interface IFormPasswordRequestUpdateProps extends IFormProps {
+    user: Api.UserPasswordRequestUpdate;
   }
   interface IAppFormProps extends IFormProps {
     appType: FormTypes;
@@ -89,6 +100,8 @@ declare namespace Form {
   interface IInputRegistrationConfirmedPasswordProps extends IInputConfirmedPasswordProps,IInputRegistrationValidationProps { }
   interface IInputRegistrationWantBeAdminProps extends IInputWantBeAdminProps { }
 
+  interface IInputPasswordRequestUpdateEmailProps extends IInputEmailProps { }
+
   interface IAppInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     appType: InputTypes;
   }
@@ -97,6 +110,9 @@ declare namespace Form {
   }
   interface IAppInputRegistrationProps extends IAppInputProps {
     appType: InputTypesRegistration;
+  }
+  interface IAppInputPasswordRequestUpdateProps extends IAppInputProps {
+    appType: InputTypesPasswordRequestUpdate;
   }
 
   interface IInputWrapperProps {
@@ -108,7 +124,9 @@ declare namespace Form {
   interface IInputWrapperAuthorizationProps extends IInputWrapperProps {
     appInputType: InputTypesAuthorization;
   }
-
+  interface IInputWrapperPasswordRequestUpdateProps extends IInputWrapperProps {
+    appInputType: InputTypesPasswordRequestUpdate;
+  }
 
   type InputLabels = {
     readonly [key in InputTypes]: string;

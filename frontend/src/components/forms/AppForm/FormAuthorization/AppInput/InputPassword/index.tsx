@@ -18,7 +18,7 @@ const InputPasswordContainer: React.FunctionComponent<Form.IInputAuthorizationPa
 const inputType = 'password'
 
 const mapStateToProps = (state: Redux.State) => {
-  const field = state.form.registration.fields[inputType];
+  const field = state.form.authorization.fields[inputType];
 
   return {
     value: field.value
@@ -27,7 +27,7 @@ const mapStateToProps = (state: Redux.State) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.registration.setValue(inputType, value))
+    setValue: (value: string | boolean) => dispatch(formActions.authorization.setValue(inputType, value))
   }
 }
 

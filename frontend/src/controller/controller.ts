@@ -7,6 +7,13 @@ const controller = axios.create({
 });
 
 controller.interceptors.response.use((response) => {
+  switch (response.status) {
+    case 201:
+      return response.data?.message;
+    default:
+      break;
+  }
+
   return response;
 }, (error) => {
   switch (error.response?.status) {

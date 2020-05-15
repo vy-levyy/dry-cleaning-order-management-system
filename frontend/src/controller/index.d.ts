@@ -1,23 +1,26 @@
 declare namespace Api {
   interface Api {
     userApi: {
-      signup: (user: RegistrationUser) => Promise;
-      signin: (user: AuthorizationUser) => Promise;
+      signup: (user: UserRegistration) => Promise;
+      signin: (user: UserAuthorization) => Promise;
+      passwordRequestUpdate: (user: UserPasswordRequestUpdate) => Promise;
     }
   }
 
-  type User = {
-    email: string;
-  }
 
-  type AuthorizationUser = User & {
+  type UserAuthorization = {
+    email: string;
     password: string
   }
 
-  type RegistrationUser = User & {
+  type UserRegistration = {
     firstName: string,
     lastName: string,
     password: string,
     wantBeAdmin: boolean
+  }
+
+  type UserPasswordRequestUpdate = {
+    email: string
   }
 }

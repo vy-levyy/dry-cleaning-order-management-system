@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import formActions from '../../../../../../redux/forms/actions';
 import InputEmail from './InputEmail';
 
-const InputEmailContainer: React.FunctionComponent<Form.IInputAuthorizationEmailProps> = ({
+const InputEmailContainer: React.FunctionComponent<Form.IInputPasswordRequestUpdateEmailProps> = ({
   value,
   setValue
 }) => {
@@ -18,7 +18,7 @@ const InputEmailContainer: React.FunctionComponent<Form.IInputAuthorizationEmail
 const inputType = 'email';
 
 const mapStateToProps = (state: Redux.State) => {
-  const field = state.form.authorization.fields[inputType];
+  const field = state.form.registration.fields[inputType];
   
   return {
     value: field.value
@@ -27,7 +27,7 @@ const mapStateToProps = (state: Redux.State) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.authorization.setValue(inputType, value))
+    setValue: (value: string | boolean) => dispatch(formActions.registration.setValue(inputType, value))
   }
 }
 

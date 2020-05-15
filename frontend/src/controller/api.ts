@@ -19,6 +19,15 @@ const api: Api.Api = {
         .catch((error) => {
           return error;
         });
+    },
+    passwordRequestUpdate(user) {
+      return controller.post('auth/password/request', { email: user.email })
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          return error;
+        });
     }
   }
 };

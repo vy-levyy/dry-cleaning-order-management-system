@@ -5,21 +5,17 @@ declare namespace Redux {
     form: {
       authorization: FormStateAuthorization;
       registration: FormStateRegistration;
+      passwordRequestUpdate: FormStatePasswordRequestUpdate;
     }
-  }
-
-  type FormState = {
-    isValid: boolean;
   }
 
   type FormStateAuthorization = {
     fields: {
       [key in Form.InputTypesAuthorization]: {
         value: string;
-        isValid: boolean;
       }
     }
-  } & FormState;
+  };
 
   type FormStateRegistration = {
     fields: {
@@ -28,26 +24,33 @@ declare namespace Redux {
         isValid: boolean;
       }
     }
-  } & FormState;
+    isValid: boolean;
+  };
+
+  type FormStatePasswordRequestUpdate = {
+    fields: {
+      [key in Form.InputTypesPasswordRequestUpdate]: {
+        value: string;
+      }
+    }
+  };
 
   type FormActionTypes = {
     fields: any;
     isValid: string;
   }
 
-  type AuthorizationActionTypes = {
+  type FormActionTypesAuthorization = {
     fields: {
-      [key in Form.AuthorizationInputNames]: {
+      [key in Form.InputTypesAuthorization]: {
         value: string;
-        isValid: string;
       }
     }
-    isValid: string;
   }
 
-  type RegistrationActionTypes = {
+  type FormActionTypesRegistration = {
     fields: {
-      [key in Form.RegistrationInputNames]: {
+      [key in Form.InputTypesRegistration]: {
         value: string;
         isValid: string | null;
       }
@@ -55,8 +58,12 @@ declare namespace Redux {
     isValid: string;
   }
 
-  type InputOwnProps = {
-    formName: Form.FormNames;
+  type FormActionTypesPasswordRequestUpdate = {
+    fields: {
+      [key in Form.InputTypesPasswordRequestUpdate]: {
+        value: string;
+      }
+    }
   }
 }
 
