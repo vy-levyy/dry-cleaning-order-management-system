@@ -1,6 +1,3 @@
-import { InputNames } from "../../../components/forms";
-import { RegistrationActionTypes } from "../..";
-
 export const CHANGE_FIRST_NAME_VALUE = 'CHANGE_FIRST_NAME_VALUE';
 export const CHANGE_IS_VALID_FIRST_NAME = 'CHANGE_IS_VALID_FIRST_NAME';
 
@@ -20,7 +17,7 @@ export const CHANGE_WANT_BE_ADMIN_VALUE = 'CHANGE_WANT_BE_ADMIN_VALUE';
 
 export const CHANGE_IS_VALID = 'CHANGE_IS_VALID';
 
-const actionTypes: RegistrationActionTypes = {
+const actionTypes: Redux.RegistrationActionTypes = {
   fields: {
     firstName: {
       value: CHANGE_FIRST_NAME_VALUE,
@@ -51,12 +48,12 @@ const actionTypes: RegistrationActionTypes = {
 }
 
 export default {
-  setValue: (inputName: InputNames, value: string | boolean) => ({
+  setValue: (inputName: Form.InputTypesRegistration, value: string | boolean) => ({
       type: actionTypes.fields[inputName].value,
       payload: value
   }),
 
-  setIsValid: (inputName: InputNames, isValid: boolean) => ({
+  setIsValid: (inputName: Form.InputTypesRegistration, isValid: boolean) => ({
     type: actionTypes.fields[inputName].isValid,
     payload: isValid
   }),

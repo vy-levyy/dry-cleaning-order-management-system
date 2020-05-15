@@ -10,6 +10,15 @@ const api: Api.Api = {
         .catch((error) => {
           return error;
         });
+    },
+    signin(user) {
+      return controller.post('auth/login', { user })
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          return error;
+        });
     }
   }
 };

@@ -1,0 +1,47 @@
+import React from 'react';
+import { userApi } from '../../../../controller/api';
+import InputWrapper from './InputWrapper';
+import { AxiosResponse, AxiosError } from 'axios';
+
+const AppFormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> = ({
+  user,
+  ...attributes
+}) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    userApi.signin(user)
+      .then((response: AxiosResponse) => {
+        console.log(response);
+        localStorage.setItem('token', response.data?.token);
+      })
+      .catch((error: AxiosError) => {
+        console.error(error);
+      })
+  }
+
+  return (
+    <form
+      className="container col-10 col-md-8 col-lg-6 col-xl-4"
+      { ...attributes }
+    >
+      <InputWrapper appInputType="email" />
+      <InputWrapper appInputType="password" />
+      <div className="row text-center">
+        <div className="col">
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            onClick={ handleClick }
+          >
+            Sign In
+          </button>
+          <a className="nav-link" href="/registration">Sign Up</a>
+          <a className="nav-link" href="/registration">Password recovery</a>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+export default AppFormAuthorization;

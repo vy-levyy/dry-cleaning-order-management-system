@@ -3,18 +3,46 @@ import Form from '../components/forms';
 declare namespace Redux {
   type State = {
     form: {
-      registration: FormRegistrationState;
+      authorization: FormStateAuthorization;
+      registration: FormStateRegistration;
     }
   }
 
-  type FormRegistrationState = {
+  type FormState = {
+    isValid: boolean;
+  }
+
+  type FormStateAuthorization = {
     fields: {
-      [key in Form.RegistrationInputNames]: {
+      [key in Form.InputTypesAuthorization]: {
+        value: string;
+        isValid: boolean;
+      }
+    }
+  } & FormState;
+
+  type FormStateRegistration = {
+    fields: {
+      [key in Form.InputTypesRegistration]: {
         value: string | boolean;
         isValid: boolean;
       }
-    },
-    isValid: boolean;
+    }
+  } & FormState;
+
+  type FormActionTypes = {
+    fields: any;
+    isValid: string;
+  }
+
+  type AuthorizationActionTypes = {
+    fields: {
+      [key in Form.AuthorizationInputNames]: {
+        value: string;
+        isValid: string;
+      }
+    }
+    isValid: string;
   }
 
   type RegistrationActionTypes = {

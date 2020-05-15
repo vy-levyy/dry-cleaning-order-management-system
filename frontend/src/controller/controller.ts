@@ -9,9 +9,13 @@ const controller = axios.create({
 controller.interceptors.response.use((response) => {
   return response;
 }, (error) => {
-  switch (error.response.status) {
+  switch (error.response?.status) {
+    case 401:
+      // fall through
+    case 404:
+      // fall through
     case 409:
-      return error.response.data.message;
+      return error.response.data?.message;
     default:
       break;
   }
