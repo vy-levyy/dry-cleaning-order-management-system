@@ -4,6 +4,7 @@ declare namespace Api {
       signup: (user: UserRegistration) => Promise;
       signin: (user: UserAuthorization) => Promise;
       passwordRequestUpdate: (user: UserPasswordRequestUpdate) => Promise;
+      passwordUpdate: (user: UserPasswordUpdate) => Promise;
     }
   }
 
@@ -22,5 +23,10 @@ declare namespace Api {
 
   type UserPasswordRequestUpdate = {
     email: string
+  }
+
+  type UserPasswordUpdate = {
+    password: string,
+    token: string
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import InputWrapper from './InputWrapper';
 import { userApi } from '../../../../controller/api';
-import { AxiosResponse, AxiosError } from 'axios';
+import { AxiosResponse } from 'axios';
 
 const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> = ({
   isValid,
@@ -13,12 +13,9 @@ const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> 
 
     userApi.signup(user)
       .then((response: AxiosResponse) => {
-        console.log(response);
         localStorage.setItem('token', response.data?.token);
-      })
-      .catch((error: AxiosError) => {
-        console.error(error);
-      })
+        console.log(response);
+      });
   }
 
   return (

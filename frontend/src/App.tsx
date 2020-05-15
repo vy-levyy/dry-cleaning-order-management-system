@@ -10,6 +10,7 @@ import {
 import PageAuthorization from './pages/PageAuthorization';
 import PageRegistration from './pages/PageRegistration';
 import PagePasswordRequestUpdate from './pages/PagePasswordRequestUpdate';
+import PagePasswordUpdate from './pages/PagePasswordUpdate';
 
 const App: React.FunctionComponent = () => {
   return (
@@ -27,6 +28,9 @@ const App: React.FunctionComponent = () => {
             </Route>
             <Route path="/request-update-password" exact>
               <PagePasswordRequestUpdate />
+            </Route>
+            <Route path="/update-password" exact>
+              <PagePasswordUpdate />
             </Route>
           </Switch>
         </Router>

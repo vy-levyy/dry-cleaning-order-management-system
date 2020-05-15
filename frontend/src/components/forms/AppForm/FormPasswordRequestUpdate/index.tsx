@@ -16,7 +16,7 @@ const FormPasswordRequestUpdateContainer: React.FunctionComponent<Form.IFormPass
 }
 
 const mapStateToProps = (state: State) => {
-  const fields = state.form.authorization.fields;
+  const fields = state.form.passwordRequestUpdate.fields;
 
   return {
     user: {

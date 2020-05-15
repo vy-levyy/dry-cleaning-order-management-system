@@ -3,30 +3,40 @@ import controller from './controller';
 const api: Api.Api = {
   userApi: {
     signup(user) {
-      return controller.post('auth/registration', { user })
+      return controller.post(
+        'auth/registration', {
+          user
+        })
         .then((response) => {
           return response;
-        })
-        .catch((error) => {
-          return error;
         });
     },
     signin(user) {
-      return controller.post('auth/login', { user })
+      return controller.post(
+        'auth/login', {
+          user
+        })
         .then((response) => {
           return response;
-        })
-        .catch((error) => {
-          return error;
         });
     },
     passwordRequestUpdate(user) {
-      return controller.post('auth/password/request', { email: user.email })
+      return controller.post(
+        'auth/password/request', {
+          email: user.email
+        })
         .then((response) => {
           return response;
+        });
+    },
+    passwordUpdate(user) {
+      return controller.post(
+        'auth/password/update', {
+          password: user.password,
+          token: user.token
         })
-        .catch((error) => {
-          return error;
+        .then((response) => {
+          return response;
         });
     }
   }

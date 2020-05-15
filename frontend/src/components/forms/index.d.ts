@@ -9,7 +9,8 @@ declare namespace Form {
   type FormTypes = 
     | 'registration'
     | 'authorization'
-    | 'passwordRequestUpdate';
+    | 'passwordRequestUpdate'
+    | 'passwordUpdate';
 
   type Forms = {
     readonly [key in FormTypes]: JSX.Element;
@@ -41,7 +42,11 @@ declare namespace Form {
     InputTypes,
     | 'email'
   >;
-
+  type InputTypesPasswordUpdate = Extract<
+    InputTypes,
+    | 'password'
+    | 'confirmedPassword'
+  >;
 
   type Inputs = {
     readonly [key in InputTypes]: JSX.Element;
@@ -54,6 +59,9 @@ declare namespace Form {
   }
   type InputsPasswordRequestUpdate = {
     readonly [key in InputTypesPasswordRequestUpdate]: JSX.Element;
+  }
+  type InputsPasswordUpdate = {
+    readonly [key in InputTypesPasswordUpdate]: JSX.Element;
   }
 
 
@@ -68,9 +76,14 @@ declare namespace Form {
   interface IFormPasswordRequestUpdateProps extends IFormProps {
     user: Api.UserPasswordRequestUpdate;
   }
+  interface IFormPasswordUpdateProps extends IFormProps {
+    user: Api.UserPasswordUpdate;
+    isValid: boolean;
+  }
   interface IAppFormProps extends IFormProps {
     appType: FormTypes;
   }
+
 
   interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string | boolean;
@@ -86,11 +99,14 @@ declare namespace Form {
   interface IInputAuthorizationEmailProps extends IInputEmailProps { }
   interface IInputAuthorizationPasswordProps extends IInputPasswordProps { }
 
-  interface IInputRegistrationValidationProps extends IInputProps {
+  interface IInputValidationProps extends IInputProps {
     isValid: boolean;
     setIsValid: (value: boolean) => any;
     setIsValidForm: (value: boolean) => any;
   }
+  interface IInputRegistrationValidationProps extends IInputValidationProps { }
+  interface IInputPasswordUpdateValidationProps extends IInputValidationProps { }
+
   interface IInputRegistrationFirstNameProps extends IInputFirstNameProps, IInputRegistrationValidationProps { }
   interface IInputRegistrationLastNameProps extends IInputLastNameProps, IInputRegistrationValidationProps { }
   interface IInputRegistrationEmailProps extends IInputEmailProps, IInputRegistrationValidationProps { }
@@ -101,6 +117,12 @@ declare namespace Form {
   interface IInputRegistrationWantBeAdminProps extends IInputWantBeAdminProps { }
 
   interface IInputPasswordRequestUpdateEmailProps extends IInputEmailProps { }
+
+  interface IInputPasswordUpdatePasswordProps extends IInputPasswordProps, IInputPasswordUpdateValidationProps { 
+    setIsValidConfirmedPassword: (value: boolean) => any;
+  }
+  interface IInputPasswordUpdateComfirmedPasswordProps extends IInputConfirmedPasswordProps, IInputPasswordUpdateValidationProps { }
+
 
   interface IAppInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     appType: InputTypes;
@@ -114,6 +136,10 @@ declare namespace Form {
   interface IAppInputPasswordRequestUpdateProps extends IAppInputProps {
     appType: InputTypesPasswordRequestUpdate;
   }
+  interface IAppInputPasswordUpdateProps extends IAppInputProps {
+    appType: InputTypesPasswordUpdate;
+  }
+
 
   interface IInputWrapperProps {
     appInputType: InputTypes;
@@ -127,6 +153,10 @@ declare namespace Form {
   interface IInputWrapperPasswordRequestUpdateProps extends IInputWrapperProps {
     appInputType: InputTypesPasswordRequestUpdate;
   }
+  interface IInputWrapperPasswordUpdateProps extends IInputWrapperProps {
+    appInputType: InputTypesPasswordUpdate;
+  }
+
 
   type InputLabels = {
     readonly [key in InputTypes]: string;

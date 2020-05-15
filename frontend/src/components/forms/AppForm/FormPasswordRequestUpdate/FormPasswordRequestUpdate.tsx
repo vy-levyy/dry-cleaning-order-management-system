@@ -1,7 +1,7 @@
 import React from 'react';
 import { userApi } from '../../../../controller/api';
 import InputWrapper from './InputWrapper';
-import { AxiosResponse, AxiosError } from 'axios';
+import { AxiosResponse } from 'axios';
 
 const FormPasswordRequestUpdate: React.FunctionComponent<Form.IFormPasswordRequestUpdateProps> = ({
   user,
@@ -12,11 +12,8 @@ const FormPasswordRequestUpdate: React.FunctionComponent<Form.IFormPasswordReque
 
     userApi.passwordRequestUpdate(user)
       .then((response: AxiosResponse) => {
-        console.log(response);
-      })
-      .catch((error: AxiosError) => {
-        console.error(error);
-      })
+        console.log(response.data?.message);
+      });
   }
 
   return (
