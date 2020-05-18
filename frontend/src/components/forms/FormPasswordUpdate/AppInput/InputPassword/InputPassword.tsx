@@ -1,7 +1,7 @@
 import React from 'react';
 import isValidInput from './scripts/isValidInput';
 import isValidInputConfirmedPassword from '../InputConfirmedPassword/scripts/isValidInput';
-import isValidForm from '../../scripts/isValidForm';
+import isValidForm from '../../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
 
@@ -23,7 +23,7 @@ const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordPr
     setValue(event.target.value);
     setIsValid(isValidInput());
     setIsValidConfirmedPassword(isValidInputConfirmedPassword());
-    setIsValidForm(isValidForm());
+    setIsValidForm(isValidForm('passwordUpdate'));
   }
 
   return (

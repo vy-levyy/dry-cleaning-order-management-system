@@ -1,8 +1,8 @@
 import React from 'react';
-import isValidInput from './scripts/isValidInput';
-import isValidForm from '../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
+import isValidInput from './scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
 
 const InputConfirmedPassword: React.FunctionComponent<Form.IInputRegistrationConfirmedPasswordProps> = ({
   value,

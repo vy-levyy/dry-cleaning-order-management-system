@@ -1,6 +1,6 @@
 import React from 'react';
 import isValidInput from './scripts/isValidInput';
-import isValidForm from '../../scripts/isValidForm';
+import isValidForm from '../../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
 
@@ -20,9 +20,9 @@ const InputEmail: React.FunctionComponent<Form.IInputAuthorizationEmailProps> = 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     setIsValid(isValidInput());
-    setIsValidForm(isValidForm());
+    setIsValidForm(isValidForm('authorization'));
   }
-
+  
   return (
     <input
       type="email"

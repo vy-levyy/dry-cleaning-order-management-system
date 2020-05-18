@@ -42,31 +42,4 @@ const App = {
   }
 }
 
-type RegistrationFields = keyof typeof App.forms.registration.fields
-type PasswordUpdateFields = keyof typeof App.forms.passwordUpdate.fields
-
-declare namespace Redux {
-  type FormActionTypesRegistration = {
-    fields: {
-      [key in Exclude<RegistrationFields, 'wantBeAdmin'>]: {
-        value: ActionType;
-        isValid: ActionType;
-      }
-    }
-    isValid: ActionType;
-  }
-
-  type FormActionTypesPasswordUpdate = {
-    fields: {
-      [key in PasswordUpdateFields]: {
-        value: ActionType;
-        isValid: ActionType;
-      }
-    }
-    isValid: ActionType;
-  }
-
-  type ActionType = string;
-}
-
 export default App;
