@@ -18,8 +18,11 @@ import {
 
   CHANGE_IS_VALID
 } from "./actions";
+import app from '../../../state';
 
-const defaultState: Redux.FormStateRegistration = {
+type FormStateRegistration = typeof app.forms.registration;
+
+const defaultState: FormStateRegistration = {
   fields: {
     firstName: {
       value: '',
@@ -49,7 +52,7 @@ const defaultState: Redux.FormStateRegistration = {
 };
 
 export const registrationReducer = (
-  state: Redux.FormStateRegistration = defaultState,
+  state: FormStateRegistration = defaultState,
   action: { type: string, payload: any }) => {
   switch (action.type) {
     case CHANGE_FIRST_NAME_VALUE:

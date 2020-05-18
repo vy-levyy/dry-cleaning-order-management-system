@@ -7,8 +7,11 @@ import {
 
   CHANGE_IS_VALID
 } from "./actions";
+import app from '../../../state';
 
-const defaultState: Redux.FormStateAuthorization = {
+type FormStateAuthorization = typeof app.forms.authorization;
+
+const defaultState: FormStateAuthorization = {
   fields: {
     email: {
       value: '',
@@ -22,7 +25,7 @@ const defaultState: Redux.FormStateAuthorization = {
   isValid: false
 };
 
-export const authorizationReducer = (state: Redux.FormStateAuthorization = defaultState, action: any) => {
+export const authorizationReducer = (state: FormStateAuthorization = defaultState, action: any) => {
   switch (action.type) {
     case CHANGE_EMAIL_VALUE:
       return getNewFieldState('email', 'value');

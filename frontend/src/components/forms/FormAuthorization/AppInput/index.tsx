@@ -1,6 +1,6 @@
 import inputElements from './inputElements';
 
-const Input: React.FunctionComponent<Form.IAppInputAuthorizationProps> = ({ appType }) => {
+const Input: React.FunctionComponent<Form.IAppInputProps<Form.InputTypesAuthorization>> = ({ appType }) => {
   return inputElements[appType];
 }
 

@@ -8,7 +8,17 @@ export const CHANGE_IS_VALID_PASSWORD = `${FORM}/CHANGE_IS_VALID_PASSWORD`;
 
 export const CHANGE_IS_VALID = `${FORM}/CHANGE_IS_VALID`;
 
-const actionTypes: Redux.FormActionTypesAuthorization = {
+type FormActionTypesAuthorization = {
+  fields: {
+    [key in Form.InputTypesAuthorization]: {
+      value: string;
+      isValid: string;
+    }
+  },
+  isValid: string;
+}
+
+const actionTypes: FormActionTypesAuthorization = {
   fields: {
     email: {
       value: CHANGE_EMAIL_VALUE,

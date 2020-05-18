@@ -1,58 +1,19 @@
-import {
-  InputHTMLAttributes,
-  ChangeEventHandler,
-  HTMLAttributes
-} from 'react';
+import app from '../../state';
 import * as yup from 'yup';
 
 declare namespace Form {
   type InputTypes =
-    | 'firstName'
-    | 'lastName'
-    | 'email'
-    | 'password'
-    | 'confirmedPassword'
-    | 'wantBeAdmin';
-  type InputTypesAuthorization = Extract<
-    InputTypes,
-    | 'email'
-    | 'password'
-  >;
-  type InputTypesRegistration = Extract<
-    InputTypes,
-    | 'firstName'
-    | 'lastName'
-    | 'email'
-    | 'password'
-    | 'confirmedPassword'
-    | 'wantBeAdmin'
-  >;
-  type InputTypesPasswordRequestUpdate = Extract<
-    InputTypes,
-    | 'email'
-  >;
-  type InputTypesPasswordUpdate = Extract<
-    InputTypes,
-    | 'password'
-    | 'confirmedPassword'
-  >;
+  | InputTypesAuthorization
+  | InputTypesRegistration
+  | InputTypesPasswordRequestUpdate
+  | InputTypesPasswordUpdate
 
-  type Inputs = {
-    readonly [key in InputTypes]: JSX.Element;
-  }
-  type InputsAuthorization = {
-    readonly [key in InputTypesAuthorization]: JSX.Element;
-  }
-  type InputsRegistration = {
-    readonly [key in InputTypesRegistration]: JSX.Element;
-  }
-  type InputsPasswordRequestUpdate = {
-    readonly [key in InputTypesPasswordRequestUpdate]: JSX.Element;
-  }
-  type InputsPasswordUpdate = {
-    readonly [key in InputTypesPasswordUpdate]: JSX.Element;
-  }
+  type InputTypesAuthorization = keyof typeof app.forms.authorization.fields
+  type InputTypesRegistration = keyof typeof app.forms.registration.fields
+  type InputTypesPasswordRequestUpdate = keyof typeof app.forms.passwordRequestUpdate.fields
+  type InputTypesPasswordUpdate = keyof typeof app.forms.passwordUpdate.fields
 
+  type Inputs<T extends InputTypes> = Readonly<Record<T, JSX.Element>>;
 
   interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> { }
   interface IFormAuthorizationProps extends IFormProps {
@@ -107,44 +68,17 @@ declare namespace Form {
   interface IInputPasswordUpdateComfirmedPasswordProps extends IInputProps, IInputValidationProps { }
 
 
-  interface IAppInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    appType: InputTypes;
-  }
-  interface IAppInputAuthorizationProps extends IAppInputProps {
-    appType: InputTypesAuthorization;
-  }
-  interface IAppInputRegistrationProps extends IAppInputProps {
-    appType: InputTypesRegistration;
-  }
-  interface IAppInputPasswordRequestUpdateProps extends IAppInputProps {
-    appType: InputTypesPasswordRequestUpdate;
-  }
-  interface IAppInputPasswordUpdateProps extends IAppInputProps {
-    appType: InputTypesPasswordUpdate;
+  interface IAppInputProps<T extends InputTypes> extends React.InputHTMLAttributes<HTMLInputElement> {
+    appType: T;
   }
 
-
-  interface IInputWrapperProps {
-    appInputType: InputTypes;
+  interface IAppInputWrapperProps<T extends InputTypes> extends React.InputHTMLAttributes<HTMLInputElement> {
+    appInputType: T;
   };
-  interface IInputWrapperRegistrationProps extends IInputWrapperProps {
-    appInputType: InputTypesRegistration;
-  }
-  interface IInputWrapperAuthorizationProps extends IInputWrapperProps {
-    appInputType: InputTypesAuthorization;
-  }
-  interface IInputWrapperPasswordRequestUpdateProps extends IInputWrapperProps {
-    appInputType: InputTypesPasswordRequestUpdate;
-  }
-  interface IInputWrapperPasswordUpdateProps extends IInputWrapperProps {
-    appInputType: InputTypesPasswordUpdate;
-  }
-
 
   type InputLabels = {
     readonly [key in InputTypes]: string;
   }
-
   
   type ValidationSchemas = {
     [key in InputTypes]: yup.Schema<any> | null;

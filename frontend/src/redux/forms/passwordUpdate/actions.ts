@@ -8,7 +8,17 @@ export const CHANGE_IS_VALID_CONFIRMED_PASSWORD = `${FORM}/CHANGE_IS_VALID_CONFI
 
 export const CHANGE_IS_VALID = `${FORM}/CHANGE_IS_VALID`;
 
-const actionTypes: Redux.FormActionTypesPasswordUpdate = {
+type FormActionTypesPasswordUpdate = {
+  fields: {
+    [key in Form.InputTypesPasswordUpdate]: {
+      value: string;
+      isValid: string;
+    }
+  }
+  isValid: string;
+}
+
+const actionTypes: FormActionTypesPasswordUpdate = {
   fields: {
     password: {
       value: CHANGE_PASSWORD_VALUE,

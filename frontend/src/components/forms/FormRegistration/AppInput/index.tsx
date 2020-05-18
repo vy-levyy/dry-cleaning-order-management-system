@@ -1,8 +1,6 @@
-import { FunctionComponent } from 'react';
 import inputElements from './inputElements';
-import { IAppInputRegistrationProps } from '../..';
 
-const Input: FunctionComponent<IAppInputRegistrationProps> = ({ appType }) => {
+const Input: React.FunctionComponent<Form.IAppInputProps<Form.InputTypesRegistration>> = ({ appType }) => {
   return inputElements[appType];
 }
 

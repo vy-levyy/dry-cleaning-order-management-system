@@ -9,52 +9,7 @@ declare namespace Redux {
       passwordUpdate: FormStatePasswordUpdate;
     }
   }
-
-  type FormStateAuthorization = {
-    fields: {
-      [key in Form.InputTypesAuthorization]: {
-        value: string;
-        isValid: boolean;
-      }
-    },
-    isValid: boolean;
-  };
-
-  type FormStateRegistration = {
-    fields: {
-      [key in Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>]: {
-        value: string;
-        isValid: boolean;
-      }
-    } & {
-      wantBeAdmin: {
-        value: boolean;
-      }
-    },
-    isValid: boolean;
-  };
-
-  type FormStatePasswordRequestUpdate = {
-    fields: {
-      [key in Form.InputTypesPasswordRequestUpdate]: {
-        value: string;
-        isValid: boolean;
-      }
-    },
-    isValid: boolean;
-  };
-
-  type FormStatePasswordUpdate = {
-    fields: {
-      [key in Form.InputTypesPasswordUpdate]: {
-        value: string;
-        isValid: boolean;
-      }
-    },
-    isValid: boolean;
-  };
-
-
+  
   type FormActionTypesAuthorization = {
     fields: {
       [key in Form.InputTypesAuthorization]: {

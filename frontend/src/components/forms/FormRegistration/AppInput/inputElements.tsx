@@ -6,7 +6,7 @@ import InputPassword from './InputPassword';
 import InputConfirmedPassword from './InputConfirmedPassword';
 import InputWantBeAdmin from './InputWantBeAdmin';
 
-const inputElements: Form.InputsRegistration = {
+const inputElements: Form.Inputs<Form.InputTypesRegistration> = {
   firstName: <InputFirstName />,
   lastName: <InputLastName />,
   email: <InputEmail />,

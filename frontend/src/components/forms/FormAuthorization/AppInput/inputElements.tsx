@@ -2,7 +2,7 @@ import React from 'react';
 import InputEmail from './InputEmail';
 import InputPassword from './InputPassword';
 
-const inputElements: Form.InputsAuthorization = {
+const inputElements: Form.Inputs<Form.InputTypesAuthorization> = {
   email: <InputEmail />,
   password: <InputPassword />,
 };

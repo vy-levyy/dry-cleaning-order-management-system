@@ -7,8 +7,11 @@ import {
 
   CHANGE_IS_VALID
 } from "./actions";
+import app from '../../../state';
 
-const defaultState: Redux.FormStatePasswordUpdate = {
+type FormStatePasswordUpdate = typeof app.forms.passwordUpdate;
+
+const defaultState: FormStatePasswordUpdate = {
   fields: {
     password: {
       value: '',
@@ -22,7 +25,7 @@ const defaultState: Redux.FormStatePasswordUpdate = {
   isValid: false
 };
 
-export const passwordUpdateReducer = (state: Redux.FormStatePasswordUpdate = defaultState, action: any) => {
+export const passwordUpdateReducer = (state: FormStatePasswordUpdate = defaultState, action: any) => {
   switch (action.type) {
     case CHANGE_PASSWORD_VALUE:
       return getNewFieldState('password', 'value');

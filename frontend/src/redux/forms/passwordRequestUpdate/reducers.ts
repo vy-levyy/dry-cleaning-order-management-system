@@ -4,8 +4,11 @@ import {
 
   CHANGE_IS_VALID
 } from "./actions";
+import app from '../../../state';
 
-const defaultState: Redux.FormStatePasswordRequestUpdate = {
+type FormStatePasswordRequestUpdate = typeof app.forms.passwordRequestUpdate;
+
+const defaultState: FormStatePasswordRequestUpdate = {
   fields: {
     email: {
       value: '',
@@ -15,7 +18,7 @@ const defaultState: Redux.FormStatePasswordRequestUpdate = {
   isValid: false
 };
 
-export const passwordRequestUpdateReducer = (state: Redux.FormStatePasswordRequestUpdate = defaultState, action: any) => {
+export const passwordRequestUpdateReducer = (state: FormStatePasswordRequestUpdate = defaultState, action: any) => {
   switch (action.type) {
     case CHANGE_EMAIL_VALUE:
       return getNewFieldState('email', 'value');

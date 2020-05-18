@@ -19,7 +19,21 @@ export const CHANGE_WANT_BE_ADMIN_VALUE = `${FORM}/CHANGE_WANT_BE_ADMIN_VALUE`;
 
 export const CHANGE_IS_VALID = `${FORM}/CHANGE_IS_VALID`;
 
-const actionTypes: Redux.FormActionTypesRegistration = {
+type FormActionTypesRegistration = {
+  fields: {
+    [key in Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>]: {
+      value: string;
+      isValid: string;
+    }
+  } & {
+    wantBeAdmin: {
+      value: string;
+    }
+  }
+  isValid: string;
+}
+
+const actionTypes: FormActionTypesRegistration = {
   fields: {
     firstName: {
       value: CHANGE_FIRST_NAME_VALUE,
