@@ -5,6 +5,7 @@ declare namespace Api {
       signin: (user: UserAuthorization) => Promise;
       passwordRequestUpdate: (user: UserPasswordRequestUpdate) => Promise;
       passwordUpdate: (user: UserPasswordUpdate) => Promise;
+      verify: (user: UserVerify) => Promise;
     }
   }
 
@@ -28,5 +29,9 @@ declare namespace Api {
   type UserPasswordUpdate = {
     password: string,
     token: string
+  }
+
+  type UserVerify = {
+    token: string | null;
   }
 }

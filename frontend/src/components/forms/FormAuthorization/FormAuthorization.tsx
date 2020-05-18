@@ -2,6 +2,7 @@ import React from 'react';
 import { userApi } from '../../../controller/api';
 import InputWrapper from './InputWrapper';
 import { AxiosResponse } from 'axios';
+import { Link } from "react-router-dom";
 
 const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> = ({
   user,
@@ -33,8 +34,8 @@ const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> =
           >
             Sign In
           </button>
-          <a className="nav-link" href="/registration">Sign Up</a>
-          <a className="nav-link" href="/request-update-password">Password recovery</a>
+          <Link className="nav-link" to="/registration">Sign Up</Link>
+          <Link className="nav-link" to="/request-update-password">Password recovery</Link>
         </div>
       </div>
     </form>

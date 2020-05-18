@@ -1,4 +1,6 @@
-export const CHANGE_EMAIL_VALUE = 'CHANGE_EMAIL_VALUE';
+const FORM = 'PASSWORD_REQUEST_UPDATE';
+
+export const CHANGE_EMAIL_VALUE = `${FORM}/CHANGE_EMAIL_VALUE`;
 
 const actionTypes: Redux.FormActionTypesPasswordRequestUpdate = {
   fields: {

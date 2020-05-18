@@ -38,7 +38,16 @@ const api: Api.Api = {
         .then((response) => {
           return response;
         });
-    }
+    },
+    verify(user) {
+      return controller.post(
+        'auth/verify', {
+          token: user.token
+        })
+        .then((response) => {
+          return response;
+        });
+    },
   }
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import InputWrapper from './InputWrapper';
 import { userApi } from '../../../controller/api';
 import { AxiosResponse } from 'axios';
+import { Link } from "react-router-dom";
 
 const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> = ({
   isValid,
@@ -39,8 +40,8 @@ const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> 
           >
             Sign Up
           </button>
-          <a className="nav-link" href="/authorization">Sign in</a>
-          <a className="nav-link" href="/request-update-password">Password recovery</a>
+          <Link className="nav-link" to="/authorization">Sign in</Link>
+          <Link className="nav-link" to="/request-update-password">Password recovery</Link>
         </div>
       </div>
     </form>
