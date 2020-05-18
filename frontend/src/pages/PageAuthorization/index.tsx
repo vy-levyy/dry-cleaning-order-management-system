@@ -1,11 +1,11 @@
 import React from 'react';
-import AppForm from '../../components/forms/AppForm';
+import FormAuthorization from '../../components/forms/FormAuthorization';
 import PageWrapper from '../PageWrapper';
 
 const PageAuthorization: React.FunctionComponent = () => {
   return (
     <PageWrapper>
-      <AppForm appType="authorization" />
+      <FormAuthorization />
     </PageWrapper>
   );
 }

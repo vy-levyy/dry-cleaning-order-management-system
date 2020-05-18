@@ -6,17 +6,6 @@ import {
 import * as yup from 'yup';
 
 declare namespace Form {
-  type FormTypes = 
-    | 'registration'
-    | 'authorization'
-    | 'passwordRequestUpdate'
-    | 'passwordUpdate';
-
-  type Forms = {
-    readonly [key in FormTypes]: JSX.Element;
-  };
-
-
   type InputTypes =
     | 'firstName'
     | 'lastName'
@@ -79,9 +68,6 @@ declare namespace Form {
   interface IFormPasswordUpdateProps extends IFormProps {
     user: Api.UserPasswordUpdate;
     isValid: boolean;
-  }
-  interface IAppFormProps extends IFormProps {
-    appType: FormTypes;
   }
 
 

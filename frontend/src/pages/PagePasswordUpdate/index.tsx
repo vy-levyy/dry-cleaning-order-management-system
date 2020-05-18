@@ -1,11 +1,11 @@
 import React from 'react';
-import AppForm from '../../components/forms/AppForm';
+import FormPasswordUpdate from '../../components/forms/FormPasswordUpdate';
 import PageWrapper from '../PageWrapper';
 
 const PagePasswordUpdate: React.FunctionComponent = () => {
   return (
     <PageWrapper>
-      <AppForm appType="passwordUpdate" />
+      <FormPasswordUpdate />
     </PageWrapper>
   );
 }
