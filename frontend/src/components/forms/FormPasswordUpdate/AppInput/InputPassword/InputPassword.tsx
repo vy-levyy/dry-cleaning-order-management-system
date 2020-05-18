@@ -2,7 +2,8 @@ import React from 'react';
 import isValidInput from './scripts/isValidInput';
 import isValidInputConfirmedPassword from '../InputConfirmedPassword/scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
-import getValidationStatusClass from '../scripts/getValidationStatusClass';
+import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
+import getTooltip from '../../../scripts/getTooltip';
 
 const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordProps> = ({
   value,
@@ -25,13 +26,6 @@ const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordPr
     setIsValidForm(isValidForm());
   }
 
-  const title = 
-    'Минимум 6 символов'
-    + '\nМинимум 1 цифра'
-    + '\nМинимум 1 большая буква'
-    + '\nМинимум 1 маленькая буква'
-    + '\nМинимум 1 спец. символ';
-
   return (
     <input
       type="password"
@@ -40,7 +34,7 @@ const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordPr
       data-toggle="tooltip"
       data-placement="top"
       data-trigger="focus"
-      data-original-title={ title }
+      data-original-title={ getTooltip('password') }
       onChange={ handleChange }
     />
   );

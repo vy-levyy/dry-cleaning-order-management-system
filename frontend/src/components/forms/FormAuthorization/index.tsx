@@ -16,12 +16,13 @@ const FormAuthorizationContainer: React.FunctionComponent<Form.IFormAuthorizatio
 }
 
 const mapStateToProps = (state: State) => {
-  const fields = state.form.authorization.fields;
+  const form = state.form.authorization;
 
   return {
+    isValid: form.isValid,
     user: {
-      email: String(fields.email.value),
-      password: String(fields.password.value),
+      email: String(form.fields.email.value),
+      password: String(form.fields.password.value),
     }
   }
 }

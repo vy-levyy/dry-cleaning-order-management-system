@@ -1,7 +1,8 @@
 import React from 'react';
 import isValidInput from './scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
-import getValidationStatusClass from '../scripts/getValidationStatusClass';
+import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
+import getTooltip from '../../../scripts/getTooltip';
 
 const InputEmail: React.FunctionComponent<Form.IInputRegistrationEmailProps> = ({
   value,
@@ -30,7 +31,7 @@ const InputEmail: React.FunctionComponent<Form.IInputRegistrationEmailProps> = (
       data-toggle="tooltip"
       data-placement="top"
       data-trigger="focus"
-      data-original-title="Пример: tester@test.com"
+      data-original-title={ getTooltip('email') }
       onChange={ handleChange }
     />
   );

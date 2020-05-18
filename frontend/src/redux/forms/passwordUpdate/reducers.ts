@@ -25,59 +25,43 @@ const defaultState: Redux.FormStatePasswordUpdate = {
 export const passwordUpdateReducer = (state: Redux.FormStatePasswordUpdate = defaultState, action: any) => {
   switch (action.type) {
     case CHANGE_PASSWORD_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          password: {
-            ...state.fields.password,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('password', 'value');
 
     case CHANGE_IS_VALID_PASSWORD:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          password: {
-            ...state.fields.password,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('password', 'isValid');
 
     case CHANGE_CONFIRMED_PASSWORD_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          confirmedPassword: {
-            ...state.fields.confirmedPassword,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('confirmedPassword', 'value');
 
     case CHANGE_IS_VALID_CONFIRMED_PASSWORD:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          confirmedPassword: {
-            ...state.fields.confirmedPassword,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('confirmedPassword', 'isValid');
 
     case CHANGE_IS_VALID:
-      return {
-        ...state,
-        isValid: action.payload
-      };
+      return getNewFormIsValidState();
   }
 
   return state;
+
+  function getNewFieldState(
+    fieldName: Form.InputTypesPasswordUpdate,
+    fieldState: 'value' | 'isValid'
+  ) {
+    return {
+      ...state,
+      fields: {
+        ...state.fields,
+        [fieldName]: {
+          ...state.fields[fieldName],
+          [fieldState]: action.payload
+        }
+      }
+    };
+  }
+
+  function getNewFormIsValidState() {
+    return {
+      ...state,
+      isValid: action.payload
+    }
+  }
 }

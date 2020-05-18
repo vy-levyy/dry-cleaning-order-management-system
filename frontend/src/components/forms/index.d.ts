@@ -56,58 +56,55 @@ declare namespace Form {
 
   interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> { }
   interface IFormAuthorizationProps extends IFormProps {
+    isValid: boolean;
     user: Api.UserAuthorization;
   }
   interface IFormRegistrationProps extends IFormProps {
-    user: Api.UserRegistration;
     isValid: boolean;
+    user: Api.UserRegistration;
   }
   interface IFormPasswordRequestUpdateProps extends IFormProps {
+    isValid: boolean;
     user: Api.UserPasswordRequestUpdate;
   }
   interface IFormPasswordUpdateProps extends IFormProps {
-    user: Api.UserPasswordUpdate;
     isValid: boolean;
+    user: Api.UserPasswordUpdate;
   }
 
 
   interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    value: string | boolean;
-    setValue: (value: string | boolean) => any;
+    value: string;
+    setValue: (value: string) => any;
   }
-  interface IInputFirstNameProps extends IInputProps { }
-  interface IInputLastNameProps extends IInputProps { }
-  interface IInputEmailProps extends IInputProps { }
-  interface IInputPasswordProps extends IInputProps { }
-  interface IInputConfirmedPasswordProps extends IInputProps { }
-  interface IInputWantBeAdminProps extends IInputProps { }
-
-  interface IInputAuthorizationEmailProps extends IInputEmailProps { }
-  interface IInputAuthorizationPasswordProps extends IInputPasswordProps { }
 
   interface IInputValidationProps extends IInputProps {
     isValid: boolean;
     setIsValid: (value: boolean) => any;
     setIsValidForm: (value: boolean) => any;
   }
-  interface IInputRegistrationValidationProps extends IInputValidationProps { }
-  interface IInputPasswordUpdateValidationProps extends IInputValidationProps { }
 
-  interface IInputRegistrationFirstNameProps extends IInputFirstNameProps, IInputRegistrationValidationProps { }
-  interface IInputRegistrationLastNameProps extends IInputLastNameProps, IInputRegistrationValidationProps { }
-  interface IInputRegistrationEmailProps extends IInputEmailProps, IInputRegistrationValidationProps { }
-  interface IInputRegistrationPasswordProps extends  IInputPasswordProps,IInputRegistrationValidationProps { 
+  interface IInputAuthorizationEmailProps extends IInputProps, IInputValidationProps { }
+  interface IInputAuthorizationPasswordProps extends IInputProps,IInputValidationProps { }
+
+  interface IInputRegistrationFirstNameProps extends IInputProps, IInputValidationProps { }
+  interface IInputRegistrationLastNameProps extends IInputProps, IInputValidationProps { }
+  interface IInputRegistrationEmailProps extends IInputProps, IInputValidationProps { }
+  interface IInputRegistrationPasswordProps extends  IInputProps,IInputValidationProps { 
     setIsValidConfirmedPassword: (value: boolean) => any;
   }
-  interface IInputRegistrationConfirmedPasswordProps extends IInputConfirmedPasswordProps,IInputRegistrationValidationProps { }
-  interface IInputRegistrationWantBeAdminProps extends IInputWantBeAdminProps { }
+  interface IInputRegistrationConfirmedPasswordProps extends IInputProps,IInputValidationProps { }
+  interface IInputRegistrationWantBeAdminProps extends IInputProps {
+    value: boolean;
+    setValue: (value: boolean) => any;
+  }
 
-  interface IInputPasswordRequestUpdateEmailProps extends IInputEmailProps { }
+  interface IInputPasswordRequestUpdateEmailProps extends IInputProps, IInputValidationProps { }
 
-  interface IInputPasswordUpdatePasswordProps extends IInputPasswordProps, IInputPasswordUpdateValidationProps { 
+  interface IInputPasswordUpdatePasswordProps extends IInputProps, IInputValidationProps { 
     setIsValidConfirmedPassword: (value: boolean) => any;
   }
-  interface IInputPasswordUpdateComfirmedPasswordProps extends IInputConfirmedPasswordProps, IInputPasswordUpdateValidationProps { }
+  interface IInputPasswordUpdateComfirmedPasswordProps extends IInputProps, IInputValidationProps { }
 
 
   interface IAppInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

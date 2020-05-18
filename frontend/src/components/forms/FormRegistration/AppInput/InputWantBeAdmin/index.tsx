@@ -27,7 +27,7 @@ const mapStateToProps = (state: Redux.State) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.registration.setValue(inputType, value))
+    setValue: (value: boolean) => dispatch(formActions.registration.setWantBeAdminValue(value))
   }
 }
 

@@ -34,7 +34,7 @@ const mapStateToProps = (state: Redux.State) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.registration.setValue(inputType, value)),
+    setValue: (value: string) => dispatch(formActions.registration.setValue(inputType, value)),
     setIsValid: (value: boolean) => dispatch(formActions.registration.setIsValid(inputType, value)),
     setIsValidForm: (value: boolean) => dispatch(formActions.registration.setIsValidForm(value))
   }

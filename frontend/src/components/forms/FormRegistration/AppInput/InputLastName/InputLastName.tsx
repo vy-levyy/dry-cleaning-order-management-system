@@ -1,7 +1,8 @@
 import React from 'react';
 import isValidInput from './scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
-import getValidationStatusClass from '../scripts/getValidationStatusClass';
+import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
+import getTooltip from '../../../scripts/getTooltip';
 
 const InputLastName: React.FunctionComponent<Form.IInputRegistrationLastNameProps> = ({
   value,
@@ -30,7 +31,7 @@ const InputLastName: React.FunctionComponent<Form.IInputRegistrationLastNameProp
       data-toggle="tooltip"
       data-placement="top"
       data-trigger="focus"
-      data-original-title="Минимум 1 символ"
+      data-original-title={ getTooltip('lastName') }
       onChange={ handleChange }
     />
   );

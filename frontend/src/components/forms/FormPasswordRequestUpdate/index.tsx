@@ -16,11 +16,12 @@ const FormPasswordRequestUpdateContainer: React.FunctionComponent<Form.IFormPass
 }
 
 const mapStateToProps = (state: State) => {
-  const fields = state.form.passwordRequestUpdate.fields;
+  const form = state.form.passwordRequestUpdate;
 
   return {
+    isValid: form.isValid,
     user: {
-      email: String(fields.email.value)
+      email: String(form.fields.email.value)
     }
   }
 }

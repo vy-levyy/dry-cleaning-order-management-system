@@ -1,7 +1,8 @@
 import React from 'react';
 import isValidInput from './scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
-import getValidationStatusClass from '../scripts/getValidationStatusClass';
+import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
+import getTooltip from '../../../scripts/getTooltip';
 
 const InputConfirmedPassword: React.FunctionComponent<Form.IInputPasswordUpdateComfirmedPasswordProps> = ({
   value,
@@ -30,7 +31,7 @@ const InputConfirmedPassword: React.FunctionComponent<Form.IInputPasswordUpdateC
       data-toggle="tooltip"
       data-placement="top"
       data-trigger="focus"
-      data-original-title="Повторите пороль"
+      data-original-title={ getTooltip('confirmedPassword') }
       onChange={ handleChange }
     />
   );

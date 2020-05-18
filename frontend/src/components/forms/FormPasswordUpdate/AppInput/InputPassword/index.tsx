@@ -36,7 +36,7 @@ const mapStateToProps = (state: Redux.State) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.passwordUpdate.setValue(inputType, value)),
+    setValue: (value: string) => dispatch(formActions.passwordUpdate.setValue(inputType, value)),
     setIsValid: (value: boolean) => dispatch(formActions.passwordUpdate.setIsValid(inputType, value)),
     setIsValidForm: (value: boolean) => dispatch(formActions.passwordUpdate.setIsValidForm(value)),
     setIsValidConfirmedPassword: (value: boolean) => dispatch(formActions.passwordUpdate.setIsValid('confirmedPassword', value)),

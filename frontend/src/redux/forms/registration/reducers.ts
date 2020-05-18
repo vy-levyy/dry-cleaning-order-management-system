@@ -42,153 +42,75 @@ const defaultState: Redux.FormStateRegistration = {
       isValid: false
     },
     wantBeAdmin: {
-      value: false,
-      isValid: true
+      value: false
     }
   },
   isValid: false
 };
 
-export const registrationReducer = (state: Redux.FormStateRegistration = defaultState, action: any) => {
+export const registrationReducer = (
+  state: Redux.FormStateRegistration = defaultState,
+  action: { type: string, payload: any }) => {
   switch (action.type) {
     case CHANGE_FIRST_NAME_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          firstName: {
-            ...state.fields.firstName,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('firstName', 'value');
 
     case CHANGE_IS_VALID_FIRST_NAME:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          firstName: {
-            ...state.fields.firstName,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('firstName', 'isValid');
 
     case CHANGE_LAST_NAME_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          lastName: {
-            ...state.fields.lastName,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('lastName', 'value');
 
     case CHANGE_IS_VALID_LAST_NAME:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          lastName: {
-            ...state.fields.lastName,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('lastName', 'isValid');
 
     case CHANGE_EMAIL_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          email: {
-            ...state.fields.email,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('email', 'value');
 
     case CHANGE_IS_VALID_EMAIL:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          email: {
-            ...state.fields.email,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('email', 'isValid');
 
     case CHANGE_PASSWORD_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          password: {
-            ...state.fields.password,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('password', 'value');
 
     case CHANGE_IS_VALID_PASSWORD:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          password: {
-            ...state.fields.password,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('password', 'isValid');
 
     case CHANGE_CONFIRMED_PASSWORD_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          confirmedPassword: {
-            ...state.fields.confirmedPassword,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('confirmedPassword', 'value');
 
     case CHANGE_IS_VALID_CONFIRMED_PASSWORD:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          confirmedPassword: {
-            ...state.fields.confirmedPassword,
-            isValid: action.payload
-          }
-        }
-      };
+      return getNewFieldState('confirmedPassword', 'isValid');
 
     case CHANGE_WANT_BE_ADMIN_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          wantBeAdmin: {
-            ...state.fields.wantBeAdmin,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('wantBeAdmin', 'value');
 
     case CHANGE_IS_VALID:
-      return {
-        ...state,
-        isValid: action.payload
-      };
+      return getNewFormIsValidState();
   }
 
   return state;
+
+  function getNewFieldState(
+    fieldName: Form.InputTypesRegistration,
+    fieldState: 'value' | 'isValid'
+  ) {
+    return {
+      ...state,
+      fields: {
+        ...state.fields,
+        [fieldName]: {
+          ...state.fields[fieldName],
+          [fieldState]: action.payload
+        }
+      }
+    };
+  }
+
+  function getNewFormIsValidState() {
+    return {
+      ...state,
+      isValid: action.payload
+    }
+  }
 }

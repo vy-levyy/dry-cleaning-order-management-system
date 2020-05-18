@@ -4,6 +4,7 @@ import InputWrapper from './InputWrapper';
 import { AxiosResponse } from 'axios';
 
 const FormPasswordRequestUpdate: React.FunctionComponent<Form.IFormPasswordRequestUpdateProps> = ({
+  isValid,
   user,
   ...attributes
 }) => {
@@ -28,6 +29,7 @@ const FormPasswordRequestUpdate: React.FunctionComponent<Form.IFormPasswordReque
             type="submit"
             className="btn btn-primary btn-block"
             onClick={ handleClick }
+            disabled={ !isValid }
           >
             Send
           </button>

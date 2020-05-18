@@ -1,29 +1,54 @@
 import {
-  CHANGE_EMAIL_VALUE
+  CHANGE_EMAIL_VALUE,
+  CHANGE_IS_VALID_EMAIL,
+
+  CHANGE_IS_VALID
 } from "./actions";
 
 const defaultState: Redux.FormStatePasswordRequestUpdate = {
   fields: {
     email: {
-      value: ''
+      value: '',
+      isValid: false
     }
-  }
+  },
+  isValid: false
 };
 
 export const passwordRequestUpdateReducer = (state: Redux.FormStatePasswordRequestUpdate = defaultState, action: any) => {
   switch (action.type) {
     case CHANGE_EMAIL_VALUE:
-      return {
-        ...state,
-        fields: {
-          ...state.fields,
-          email: {
-            ...state.fields.email,
-            value: action.payload
-          }
-        }
-      };
+      return getNewFieldState('email', 'value');
+
+    case CHANGE_IS_VALID_EMAIL:
+      return getNewFieldState('email', 'isValid');
+
+    case CHANGE_IS_VALID:
+      return getNewFormIsValidState();
   }
 
   return state;
+
+  function getNewFieldState(
+    fieldName: Form.InputTypesPasswordRequestUpdate,
+    fieldState: 'value' | 'isValid'
+  ) {
+    return {
+      ...state,
+      fields: {
+        ...state.fields,
+        [fieldName]: {
+          ...state.fields[fieldName],
+          [fieldState]: action.payload
+        }
+      }
+    };
+  }
+
+  function getNewFormIsValidState() {
+    return {
+      ...state,
+      isValid: action.payload
+    }
+  }
 }

@@ -5,12 +5,18 @@ import InputEmail from './InputEmail';
 
 const InputEmailContainer: React.FunctionComponent<Form.IInputAuthorizationEmailProps> = ({
   value,
-  setValue
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm
 }) => {
   return (
     <InputEmail
       value={ value }
+      isValid={ isValid }
       setValue={ setValue }
+      setIsValid={ setIsValid }
+      setIsValidForm={ setIsValidForm }
     />
   );
 }
@@ -21,13 +27,16 @@ const mapStateToProps = (state: Redux.State) => {
   const field = state.form.authorization.fields[inputType];
   
   return {
-    value: field.value
+    value: field.value,
+    isValid: field.isValid
   }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    setValue: (value: string | boolean) => dispatch(formActions.authorization.setValue(inputType, value))
+    setValue: (value: string) => dispatch(formActions.authorization.setValue(inputType, value)),
+    setIsValid: (value: boolean) => dispatch(formActions.authorization.setIsValid(inputType, value)),
+    setIsValidForm: (value: boolean) => dispatch(formActions.authorization.setIsValidForm(value))
   }
 }
 

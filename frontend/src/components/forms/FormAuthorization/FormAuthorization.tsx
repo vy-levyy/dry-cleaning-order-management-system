@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios';
 import { Link } from "react-router-dom";
 
 const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> = ({
+  isValid,
   user,
   ...attributes
 }) => {
@@ -31,6 +32,7 @@ const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> =
             type="submit"
             className="btn btn-primary btn-block"
             onClick={ handleClick }
+            disabled={ !isValid }
           >
             Sign In
           </button>

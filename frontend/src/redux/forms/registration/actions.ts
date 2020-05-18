@@ -42,20 +42,24 @@ const actionTypes: Redux.FormActionTypesRegistration = {
       isValid: CHANGE_IS_VALID_CONFIRMED_PASSWORD
     },
     wantBeAdmin: {
-      value: CHANGE_WANT_BE_ADMIN_VALUE,
-      isValid: null
+      value: CHANGE_WANT_BE_ADMIN_VALUE
     }
   },
   isValid: CHANGE_IS_VALID
 }
 
 export default {
-  setValue: (inputName: Form.InputTypesRegistration, value: string | boolean) => ({
+  setValue: (inputName: Form.InputTypesRegistration, value: string) => ({
       type: actionTypes.fields[inputName].value,
       payload: value
   }),
 
-  setIsValid: (inputName: Form.InputTypesRegistration, isValid: boolean) => ({
+  setWantBeAdminValue: (value: boolean) => ({
+    type: actionTypes.fields.wantBeAdmin.value,
+    payload: value
+}),
+
+  setIsValid: (inputName: Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>, isValid: boolean) => ({
     type: actionTypes.fields[inputName].isValid,
     payload: isValid
   }),

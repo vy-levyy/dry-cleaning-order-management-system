@@ -14,17 +14,23 @@ declare namespace Redux {
     fields: {
       [key in Form.InputTypesAuthorization]: {
         value: string;
+        isValid: boolean;
       }
-    }
+    },
+    isValid: boolean;
   };
 
   type FormStateRegistration = {
     fields: {
-      [key in Form.InputTypesRegistration]: {
-        value: string | boolean;
+      [key in Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>]: {
+        value: string;
         isValid: boolean;
       }
-    }
+    } & {
+      wantBeAdmin: {
+        value: boolean;
+      }
+    },
     isValid: boolean;
   };
 
@@ -32,8 +38,10 @@ declare namespace Redux {
     fields: {
       [key in Form.InputTypesPasswordRequestUpdate]: {
         value: string;
+        isValid: boolean;
       }
-    }
+    },
+    isValid: boolean;
   };
 
   type FormStatePasswordUpdate = {
@@ -42,7 +50,7 @@ declare namespace Redux {
         value: string;
         isValid: boolean;
       }
-    }
+    },
     isValid: boolean;
   };
 
@@ -51,15 +59,21 @@ declare namespace Redux {
     fields: {
       [key in Form.InputTypesAuthorization]: {
         value: string;
+        isValid: string;
       }
-    }
+    },
+    isValid: string;
   }
 
   type FormActionTypesRegistration = {
     fields: {
-      [key in Form.InputTypesRegistration]: {
+      [key in Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>]: {
         value: string;
-        isValid: string | null;
+        isValid: string;
+      }
+    } & {
+      wantBeAdmin: {
+        value: string;
       }
     }
     isValid: string;
@@ -69,8 +83,10 @@ declare namespace Redux {
     fields: {
       [key in Form.InputTypesPasswordRequestUpdate]: {
         value: string;
+        isValid: string;
       }
-    }
+    },
+    isValid: string;
   }
 
   type FormActionTypesPasswordUpdate = {
