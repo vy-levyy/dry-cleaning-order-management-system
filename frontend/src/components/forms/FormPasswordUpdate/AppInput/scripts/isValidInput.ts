@@ -2,10 +2,10 @@ import app from "../../../../../state";
 import store from "../../../../../store";
 import validationSchemas from "../../../scripts/validationSchemas";
 
-type InputNames = Exclude<keyof typeof app.forms.registration.fields, 'wantBeAdmin'>;
+type InputNames = keyof typeof app.forms.passwordUpdate.fields;
 
 export default (inputName: InputNames) => {
-  const fields = store.getState().form.registration.fields;
+  const fields = store.getState().form.passwordUpdate.fields;
   let isValidInput = null;
 
   switch (inputName) {

@@ -1,17 +1,16 @@
 import React from 'react';
-import isValidInput from './scripts/isValidInput';
-import isValidInputConfirmedPassword from '../InputConfirmedPassword/scripts/isValidInput';
-import isValidForm from '../../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
-import getTooltip from '../../../scripts/getTooltip';
+import getTooltipAttributes from '../../../scripts/getTooltipAttributes';
+import isValidInput from '../scripts/isValidInput';
+import isValidForm from '../../../scripts/isValidForm';
 
 const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordProps> = ({
   value,
   isValid,
   setValue,
   setIsValid,
-  setIsValidForm,
-  setIsValidConfirmedPassword
+  setIsValidConfirmedPassword,
+  setIsValidForm
 }) => {
   let validationStatusClass: string = '';
 
@@ -21,8 +20,8 @@ const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordPr
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-    setIsValid(isValidInput());
-    setIsValidConfirmedPassword(isValidInputConfirmedPassword());
+    setIsValid(isValidInput('password'));
+    setIsValidConfirmedPassword(isValidInput('confirmedPassword'));
     setIsValidForm(isValidForm('passwordUpdate'));
   }
 
@@ -30,11 +29,8 @@ const InputPassword: React.FunctionComponent<Form.IInputPasswordUpdatePasswordPr
     <input
       type="password"
       className={ `form-control ${ validationStatusClass }` }
-      value={ String(value) }
-      data-toggle="tooltip"
-      data-placement="top"
-      data-trigger="focus"
-      data-original-title={ getTooltip('password') }
+      value={ value }
+      { ...getTooltipAttributes('password') }
       onChange={ handleChange }
     />
   );

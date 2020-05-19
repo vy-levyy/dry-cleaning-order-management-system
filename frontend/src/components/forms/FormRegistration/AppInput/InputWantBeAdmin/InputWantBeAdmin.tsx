@@ -1,16 +1,20 @@
 import React from 'react';
-import handleChange from '../../scripts/handleChange';
 
 const InputWantBeAdmin: React.FunctionComponent<Form.IInputRegistrationWantBeAdminProps> = ({
-  value
+  value,
+  setValue
 }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.checked);
+  }
+
   return (
     <input
       type="checkbox"
       className={ `form-check-input ml-2` }
       value="Want be admin"
       checked={ value }
-      onChange={ handleChange.bind(null, 'wantBeAdmin') }
+      onChange={ handleChange }
     />
   );
 }

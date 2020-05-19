@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import formActions from '../../../../../redux/forms/actions';
 import InputConfirmedPassword from './InputConfirmedPassword';
+import formActions from '../../../../../redux/forms/actions';
+import mapStateToPropsWrapper from '../scripts/mapStateToPropsWrapper';
 
 const InputConfirmedPasswordContainer: React.FunctionComponent<Form.IInputPasswordUpdateComfirmedPasswordProps> = ({
   value,
   isValid,
   setValue,
   setIsValid,
-  setIsValidForm,
+  setIsValidForm
 }) => {
   return (
     <InputConfirmedPassword
@@ -20,16 +21,10 @@ const InputConfirmedPasswordContainer: React.FunctionComponent<Form.IInputPasswo
     />
   );
 }
+
 const inputType = 'confirmedPassword';
 
-const mapStateToProps = (state: Redux.State) => {
-  const field = state.form.passwordUpdate.fields[inputType];
-
-  return {
-    value: field.value,
-    isValid: field.isValid
-  }
-}
+const mapStateToProps = mapStateToPropsWrapper(inputType);
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {

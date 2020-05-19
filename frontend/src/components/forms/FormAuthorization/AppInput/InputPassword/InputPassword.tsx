@@ -1,8 +1,7 @@
 import React from 'react';
-import isValidInput from './scripts/isValidInput';
-import isValidForm from '../../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
-import getTooltip from '../../../scripts/getTooltip';
+import handleChange from '../scripts/handleChange';
+import getTooltipAttributes from '../../../scripts/getTooltipAttributes';
 
 const InputPassword: React.FunctionComponent<Form.IInputAuthorizationPasswordProps> = ({
   value,
@@ -16,25 +15,23 @@ const InputPassword: React.FunctionComponent<Form.IInputAuthorizationPasswordPro
   if (value) {
     validationStatusClass = getValidationStatusClass(isValid);
   }
-  
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    setIsValid(isValidInput());
-    setIsValidForm(isValidForm('authorization'));
-  }
 
   return (
     <input
       type="password"
       className={ `form-control ${ validationStatusClass }` }
-      value={ String(value) }
-      data-toggle="tooltip"
-      data-placement="top"
-      data-trigger="focus"
-      data-original-title={ getTooltip('password') }
-      onChange={ handleChange }
+      value={ value }
+      { ...getTooltipAttributes('password') }
+      onChange={ handleChange.bind(
+        null,
+        'password',
+        setValue,
+        setIsValid,
+        setIsValidForm
+      )}
     />
   );
 }
+
 
 export default InputPassword;

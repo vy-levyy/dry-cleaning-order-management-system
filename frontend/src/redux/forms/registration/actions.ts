@@ -19,21 +19,7 @@ export const CHANGE_WANT_BE_ADMIN_VALUE = `${FORM}/CHANGE_WANT_BE_ADMIN_VALUE`;
 
 export const CHANGE_IS_VALID = `${FORM}/CHANGE_IS_VALID`;
 
-type FormActionTypesRegistration = {
-  fields: {
-    [key in Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>]: {
-      value: string;
-      isValid: string;
-    }
-  } & {
-    wantBeAdmin: {
-      value: string;
-    }
-  }
-  isValid: string;
-}
-
-const actionTypes: FormActionTypesRegistration = {
+const actionTypes: Redux.FormActionTypesRegistration = {
   fields: {
     firstName: {
       value: CHANGE_FIRST_NAME_VALUE,
@@ -62,24 +48,29 @@ const actionTypes: FormActionTypesRegistration = {
   isValid: CHANGE_IS_VALID
 }
 
+export const setValue = (inputName: Form.InputTypesRegistration, value: string) => ({
+  type: actionTypes.fields[inputName].value,
+  payload: value
+});
+
+export const setWantBeAdminValue = (value: boolean) => ({
+  type: actionTypes.fields.wantBeAdmin.value,
+  payload: value
+});
+
+export const setIsValid = (inputName: Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>, isValid: boolean) => ({
+  type: actionTypes.fields[inputName].isValid,
+  payload: isValid
+});
+
+export const setIsValidForm = (isValid: boolean) => ({
+  type: actionTypes.isValid,
+  payload: isValid
+});
+
 export default {
-  setValue: (inputName: Form.InputTypesRegistration, value: string) => ({
-      type: actionTypes.fields[inputName].value,
-      payload: value
-  }),
-
-  setWantBeAdminValue: (value: boolean) => ({
-    type: actionTypes.fields.wantBeAdmin.value,
-    payload: value
-}),
-
-  setIsValid: (inputName: Exclude<Form.InputTypesRegistration, 'wantBeAdmin'>, isValid: boolean) => ({
-    type: actionTypes.fields[inputName].isValid,
-    payload: isValid
-  }),
-
-  setIsValidForm: (isValid: boolean) => ({
-    type: actionTypes.isValid,
-    payload: isValid
-  })
+  setValue,
+  setIsValid,
+  setWantBeAdminValue,
+  setIsValidForm
 }

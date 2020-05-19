@@ -5,17 +5,7 @@ export const CHANGE_IS_VALID_EMAIL = `${FORM}/CHANGE_IS_VALID_EMAIL`;
 
 export const CHANGE_IS_VALID = `${FORM}/CHANGE_IS_VALID`;
 
-type FormActionTypesPasswordRequestUpdate = {
-  fields: {
-    [key in Form.InputTypesPasswordRequestUpdate]: {
-      value: string;
-      isValid: string;
-    }
-  },
-  isValid: string;
-}
-
-const actionTypes: FormActionTypesPasswordRequestUpdate = {
+const actionTypes: Redux.FormActionTypesPasswordRequestUpdate = {
   fields: {
     email: {
       value: CHANGE_EMAIL_VALUE,
@@ -25,19 +15,23 @@ const actionTypes: FormActionTypesPasswordRequestUpdate = {
   isValid: CHANGE_IS_VALID
 }
 
-export default {
-  setValue: (inputName: Form.InputTypesPasswordRequestUpdate, value: string) => ({
-    type: actionTypes.fields[inputName].value,
-    payload: value
-  }),
+export const setValue = (inputName: Form.InputTypesPasswordRequestUpdate, value: string) => ({
+  type: actionTypes.fields[inputName].value,
+  payload: value
+});
   
-  setIsValid: (inputName: Form.InputTypesPasswordRequestUpdate, isValid: boolean) => ({
-    type: actionTypes.fields[inputName].isValid,
-    payload: isValid
-  }),
+export const setIsValid = (inputName: Form.InputTypesPasswordRequestUpdate, isValid: boolean) => ({
+  type: actionTypes.fields[inputName].isValid,
+  payload: isValid
+});
 
-  setIsValidForm: (isValid: boolean) => ({
-    type: actionTypes.isValid,
-    payload: isValid
-  })
+export const setIsValidForm = (isValid: boolean) => ({
+  type: actionTypes.isValid,
+  payload: isValid
+});
+
+export default {
+  setValue,
+  setIsValid,
+  setIsValidForm
 }

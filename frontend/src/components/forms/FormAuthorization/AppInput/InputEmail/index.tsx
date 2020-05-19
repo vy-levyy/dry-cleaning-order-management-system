@@ -1,29 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import formActions from '../../../../../redux/forms/actions';
 import InputEmail from './InputEmail';
+import mapDispatchToPropsWrapper from '../scripts/mapDispatchToPropsWrapper';
+import mapStateToPropsWrapper from '../scripts/mapStateToPropsWrapper';
 
 const InputEmailContainer: React.FunctionComponent<Form.IInputAuthorizationEmailProps> = ({
   value,
-  isValid
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm
 }) => {
   return (
     <InputEmail
       value={ value }
       isValid={ isValid }
+      setValue={ setValue }
+      setIsValid={ setIsValid }
+      setIsValidForm={ setIsValidForm }
     />
   );
 }
 
 const inputType = 'email';
 
-const mapStateToProps = (state: Redux.State) => {
-  const field = state.form.authorization.fields[inputType];
-  
-  return {
-    value: field.value,
-    isValid: field.isValid
-  }
-}
+const mapStateToProps = mapStateToPropsWrapper(inputType);
+const mapDispatchToProps = mapDispatchToPropsWrapper(inputType);
 
-export default connect(mapStateToProps)(InputEmailContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(InputEmailContainer);

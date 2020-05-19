@@ -1,8 +1,7 @@
 import React from 'react';
-import isValidInput from './scripts/isValidInput';
-import isValidForm from '../../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
-import getTooltip from '../../../scripts/getTooltip';
+import handleChange from '../scripts/handleChange';
+import getTooltipAttributes from '../../../scripts/getTooltipAttributes';
 
 const InputEmail: React.FunctionComponent<Form.IInputPasswordRequestUpdateEmailProps> = ({
   value,
@@ -17,22 +16,19 @@ const InputEmail: React.FunctionComponent<Form.IInputPasswordRequestUpdateEmailP
     validationStatusClass = getValidationStatusClass(isValid);
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    setIsValid(isValidInput());
-    setIsValidForm(isValidForm('passwordRequestUpdate'));
-  }
-
   return (
     <input
       type="email"
       className={ `form-control ${ validationStatusClass }` }
-      value={ String(value) }
-      data-toggle="tooltip"
-      data-placement="top"
-      data-trigger="focus"
-      data-original-title={ getTooltip('email') }
-      onChange={ handleChange }
+      value={ value }
+      { ...getTooltipAttributes('email') }
+      onChange={ handleChange.bind(
+        null,
+        'email',
+        setValue,
+        setIsValid,
+        setIsValidForm
+      )}
     />
   );
 }

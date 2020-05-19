@@ -1,13 +1,15 @@
 import React from 'react';
+import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
+import getTooltipAttributes from '../../../scripts/getTooltipAttributes';
 import isValidInput from '../scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
-import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
-import getTooltip from '../../../scripts/getTooltip';
-import handleChange from '../../scripts/handleChange';
 
 const InputFirstName: React.FunctionComponent<Form.IInputRegistrationFirstNameProps> = ({
   value,
-  isValid
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm
 }) => {
   let validationStatusClass: string = '';
 
@@ -15,16 +17,19 @@ const InputFirstName: React.FunctionComponent<Form.IInputRegistrationFirstNamePr
     validationStatusClass = getValidationStatusClass(isValid);
   }
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    setIsValid(isValidInput('firstName'));
+    setIsValidForm(isValidForm());
+  }
+
   return (
     <input
       type="text"
       className={ `form-control ${ validationStatusClass }` }
-      value={ String(value) }
-      data-toggle="tooltip"
-      data-placement="top"
-      data-trigger="focus"
-      data-original-title={ getTooltip('firstName') }
-      onChange={ handleChange.bind(null, 'firstName') }
+      value={ value }
+      { ...getTooltipAttributes('firstName') }
+      onChange={ handleChange }
     />
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import formActions from '../../../../../redux/forms/actions';
 import InputPassword from './InputPassword';
+import mapDispatchToPropsWrapper from '../scripts/mapDispatchToPropsWrapper';
 
 const InputPasswordContainer: React.FunctionComponent<Form.IInputAuthorizationPasswordProps> = ({
   value,
@@ -32,12 +32,6 @@ const mapStateToProps = (state: Redux.State) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    setValue: (value: string) => dispatch(formActions.authorization.setValue(inputType, value)),
-    setIsValid: (value: boolean) => dispatch(formActions.authorization.setIsValid(inputType, value)),
-    setIsValidForm: (value: boolean) => dispatch(formActions.authorization.setIsValidForm(value))
-  }
-}
+const mapDispatchToProps = mapDispatchToPropsWrapper(inputType);
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputPasswordContainer);

@@ -1,11 +1,15 @@
 import React from 'react';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
-import getTooltip from '../../../scripts/getTooltip';
-import handleChange from '../../scripts/handleChange';
+import getTooltipAttributes from '../../../scripts/getTooltipAttributes';
+import isValidInput from '../scripts/isValidInput';
+import isValidForm from '../../scripts/isValidForm';
 
 const InputConfirmedPassword: React.FunctionComponent<Form.IInputRegistrationConfirmedPasswordProps> = ({
   value,
-  isValid
+  isValid,
+  setValue,
+  setIsValid,
+  setIsValidForm
 }) => {
   let validationStatusClass: string = '';
 
@@ -13,16 +17,19 @@ const InputConfirmedPassword: React.FunctionComponent<Form.IInputRegistrationCon
     validationStatusClass = getValidationStatusClass(isValid);
   }
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    setIsValid(isValidInput('confirmedPassword'));
+    setIsValidForm(isValidForm());
+  }
+
   return (
     <input
       type="password"
       className={ `form-control ${ validationStatusClass }` }
-      value={ String(value) }
-      data-toggle="tooltip"
-      data-placement="top"
-      data-trigger="focus"
-      data-original-title={ getTooltip('confirmedPassword') }
-      onChange={ handleChange.bind(null, 'confirmedPassword') }
+      value={ value }
+      { ...getTooltipAttributes('confirmedPassword') }
+      onChange={ handleChange }
     />
   );
 }
