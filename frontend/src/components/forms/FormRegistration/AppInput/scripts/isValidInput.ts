@@ -18,7 +18,6 @@ export default (inputName: InputNames) => {
         return validationSchemas[inputName]!.isValidSync(value);
       }
   }
-  
 
   return isValidInput();
 };

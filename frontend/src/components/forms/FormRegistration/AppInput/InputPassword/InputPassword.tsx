@@ -1,15 +1,11 @@
 import React from 'react';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
-import handleChange from './scripts/handleChange';
+import handleChange from '../../scripts/handleChange';
 
 const InputPassword: React.FunctionComponent<Form.IInputRegistrationPasswordProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm,
-  setIsValidConfirmedPassword
+  isValid
 }) => {
   let validationStatusClass: string = '';
 
@@ -26,13 +22,7 @@ const InputPassword: React.FunctionComponent<Form.IInputRegistrationPasswordProp
       data-placement="top"
       data-trigger="focus"
       data-original-title={ getTooltip('password') }
-      onChange={ handleChange.bind(
-        null,
-        setValue,
-        setIsValid,
-        setIsValidConfirmedPassword,
-        setIsValidForm
-      )}
+      onChange={ handleChange.bind(null, 'password') }
     />
   );
 }

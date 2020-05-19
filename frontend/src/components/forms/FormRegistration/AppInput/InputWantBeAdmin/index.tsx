@@ -4,13 +4,11 @@ import formActions from '../../../../../redux/forms/actions';
 import InputWantBeAdmin from './InputWantBeAdmin';
 
 const InputWantBeAdminContainer: React.FunctionComponent<Form.IInputRegistrationWantBeAdminProps> = ({
-  value,
-  setValue
+  value
 }) => {
   return (
     <InputWantBeAdmin
       value={ value }
-      setValue={ setValue }
     />
   );
 }
@@ -25,10 +23,4 @@ const mapStateToProps = (state: Redux.State) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    setValue: (value: boolean) => dispatch(formActions.registration.setWantBeAdminValue(value))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputWantBeAdminContainer);
+export default connect(mapStateToProps)(InputWantBeAdminContainer);

@@ -5,20 +5,12 @@ import InputPassword from './InputPassword';
 
 const InputPasswordContainer: React.FunctionComponent<Form.IInputRegistrationPasswordProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm,
-  setIsValidConfirmedPassword
+  isValid
 }) => {
   return (
     <InputPassword
       value={ value }
       isValid={ isValid }
-      setValue={ setValue }
-      setIsValid={ setIsValid }
-      setIsValidForm={ setIsValidForm }
-      setIsValidConfirmedPassword={ setIsValidConfirmedPassword }
     />
   );
 }
@@ -34,13 +26,4 @@ const mapStateToProps = (state: Redux.State) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    setValue: (value: string) => dispatch(formActions.registration.setValue(inputType, value)),
-    setIsValid: (value: boolean) => dispatch(formActions.registration.setIsValid(inputType, value)),
-    setIsValidForm: (value: boolean) => dispatch(formActions.registration.setIsValidForm(value)),
-    setIsValidConfirmedPassword: (value: boolean) => dispatch(formActions.registration.setIsValid('confirmedPassword', value)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputPasswordContainer);
+export default connect(mapStateToProps)(InputPasswordContainer);

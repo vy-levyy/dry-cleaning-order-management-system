@@ -3,24 +3,16 @@ import isValidInput from '../scripts/isValidInput';
 import isValidForm from '../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
+import handleChange from '../../scripts/handleChange';
 
 const InputLastName: React.FunctionComponent<Form.IInputRegistrationLastNameProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm
+  isValid
 }) => {
   let validationStatusClass: string = '';
 
   if (value) {
     validationStatusClass = getValidationStatusClass(isValid);
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    setIsValid(isValidInput('lastName'));
-    setIsValidForm(isValidForm());
   }
 
   return (
@@ -32,7 +24,7 @@ const InputLastName: React.FunctionComponent<Form.IInputRegistrationLastNameProp
       data-placement="top"
       data-trigger="focus"
       data-original-title={ getTooltip('lastName') }
-      onChange={ handleChange }
+      onChange={ handleChange.bind(null, 'lastName') }
     />
   );
 }

@@ -6,10 +6,7 @@ import getTooltip from '../../../scripts/getTooltip';
 
 const InputEmail: React.FunctionComponent<Form.IInputAuthorizationEmailProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm
+  isValid
 }) => {
   let validationStatusClass: string = '';
 

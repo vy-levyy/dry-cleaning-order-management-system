@@ -5,18 +5,12 @@ import InputFirstName from './InputFirstName';
 
 const InputFirstNameContainer: React.FunctionComponent<Form.IInputRegistrationFirstNameProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm,
+  isValid
 }) => {
   return (
     <InputFirstName
       value={ value }
       isValid={ isValid }
-      setValue={ setValue }
-      setIsValid={ setIsValid }
-      setIsValidForm={ setIsValidForm }
     />
   );
 }
@@ -32,12 +26,4 @@ const mapStateToProps = (state: Redux.State) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    setValue: (value: string) => dispatch(formActions.registration.setValue(inputType, value)),
-    setIsValid: (value: boolean) => dispatch(formActions.registration.setIsValid(inputType, value)),
-    setIsValidForm: (value: boolean) => dispatch(formActions.registration.setIsValidForm(value))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputFirstNameContainer);
+export default connect(mapStateToProps)(InputFirstNameContainer);

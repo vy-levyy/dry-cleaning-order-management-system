@@ -1,15 +1,11 @@
 import isValidInput from "../../scripts/isValidInput";
 import isValidForm from "../../../scripts/isValidForm";
+import formActions from '../../../../../../redux/forms/registration/actions'
 
-export default (
-  setValue: (value: string) => any,
-  setIsValid: (value: boolean) => any,
-  setIsValidConfirmedPassword: (value: boolean) => any,
-  setIsValidForm: (value: boolean) => any,
-  event: React.ChangeEvent<HTMLInputElement>
-) => {
-  setValue(event.target.value);
-  setIsValid(isValidInput('password'));
-  setIsValidConfirmedPassword(isValidInput('confirmedPassword'));
-  setIsValidForm(isValidForm());
+const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  formActions.setValue('password', event.target.value);
+  formActions.setIsValid('password', isValidInput('password'));
+  formActions.setIsValid('confirmedPassword', isValidInput('confirmedPassword'));
+  formActions.setIsValidForm(isValidForm());
 }
+export default handleChange;

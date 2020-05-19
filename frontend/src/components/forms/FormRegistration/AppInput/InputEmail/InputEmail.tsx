@@ -1,26 +1,16 @@
 import React from 'react';
-import isValidInput from '../scripts/isValidInput';
-import isValidForm from '../../scripts/isValidForm';
 import getValidationStatusClass from '../../../scripts/getValidationStatusClass';
 import getTooltip from '../../../scripts/getTooltip';
+import handleChange from '../../scripts/handleChange';
 
 const InputEmail: React.FunctionComponent<Form.IInputRegistrationEmailProps> = ({
   value,
-  isValid,
-  setValue,
-  setIsValid,
-  setIsValidForm
+  isValid
 }) => {
   let validationStatusClass: string = '';
 
   if (value) {
     validationStatusClass = getValidationStatusClass(isValid);
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    setIsValid(isValidInput('email'));
-    setIsValidForm(isValidForm());
   }
 
   return (
@@ -32,7 +22,7 @@ const InputEmail: React.FunctionComponent<Form.IInputRegistrationEmailProps> = (
       data-placement="top"
       data-trigger="focus"
       data-original-title={ getTooltip('email') }
-      onChange={ handleChange }
+      onChange={ handleChange.bind(null, 'email') }
     />
   );
 }
