@@ -12,7 +12,6 @@ import PageRegistration from './pages/PageRegistration';
 import PagePasswordRequestUpdate from './pages/PagePasswordRequestUpdate';
 import PagePasswordUpdate from './pages/PagePasswordUpdate';
 import { userApi } from './controller/api';
-
 const App: React.FunctionComponent = () => {
   let [, setIsLoggedIn] = useState<boolean | null>(null);
 
