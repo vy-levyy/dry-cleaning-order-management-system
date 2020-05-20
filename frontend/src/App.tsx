@@ -1,12 +1,12 @@
 import React from 'react';
 import store from './store';
 import { Provider } from 'react-redux';
-import PageRegistration from './pages/PageRegistration';
+import Menu from './components/Menu';
 
 const App: React.FunctionComponent = () => {
   return (
     <Provider store={ store }>
-      <PageRegistration />
+      <Menu />;
     </Provider>
   );
 }

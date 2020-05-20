@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/js/dist/util.js.map'
 
 activateTooltips();
+activateDropDown();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,10 @@ ReactDOM.render(
 
 function activateTooltips() {
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+}
+
+function activateDropDown() {
+  $('.dropdown-toggle').dropdown();
 }

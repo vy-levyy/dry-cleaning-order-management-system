@@ -1,0 +1,2 @@
+[0519/184604.736:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
+[0519/184605.024:ERROR:exception_snapshot_win.cc(98)] thread ID 3664 not found in process
