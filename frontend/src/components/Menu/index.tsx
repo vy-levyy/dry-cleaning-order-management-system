@@ -11,23 +11,21 @@ const Menu: React.FunctionComponent = () => {
   role = getRole();
 
   return (
-    <div className="container">
-      <div className="dropdown">
-        <button
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Menu
-        </button>
-        <MenuList
-          list={ getItemsByRole(role) }
-          activeItem={ getActiveItem() }
-        />
-      </div>
-    </div>
+    <div className="dropdown">
+      <button
+        className="btn btn-secondary pl-5 pr-5"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+      <MenuList
+        list={ getItemsByRole(role) }
+        activeItem={ getActiveItem() }
+      />
+    </div>  
   );
 }
 
