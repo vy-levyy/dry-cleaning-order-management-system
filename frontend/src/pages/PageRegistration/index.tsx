@@ -1,13 +1,12 @@
 import React from 'react';
-import Form from '../../components/forms/Form';
+import FormRegistration from '../../components/forms/FormRegistration';
+import PageWrapper from '../PageWrapper';
 
 const PageRegistration: React.FunctionComponent = () => {
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <Form type="registration" />
-      </div>
-    </div>
+    <PageWrapper>
+      <FormRegistration />
+    </PageWrapper>
   );
 }
 

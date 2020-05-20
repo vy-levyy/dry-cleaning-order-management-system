@@ -24,7 +24,8 @@ const validationSchemas: ValidationSchemas = {
   lastName: text,
   email: email,
   password: password,
-  confirmedPassword: null
+  confirmedPassword: null,
+  wantBeAdmin: null
 };
 
 export default validationSchemas;
