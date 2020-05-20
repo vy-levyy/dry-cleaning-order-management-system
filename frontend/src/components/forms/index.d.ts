@@ -1,88 +1,89 @@
-import {
-  InputHTMLAttributes,
-  ChangeEventHandler,
-  HTMLAttributes
-} from 'react';
+import app from '../../state';
 import * as yup from 'yup';
 
 declare namespace Form {
-  type FormNames =
-    | 'authorization'
-    | 'registration';
+  type InputTypes =
+  | InputTypesAuthorization
+  | InputTypesRegistration
+  | InputTypesPasswordRequestUpdate
+  | InputTypesPasswordUpdate
 
-  type Forms = {
-    [key in FormNames]: JSX.Element;
+  type InputTypesAuthorization = keyof typeof app.forms.authorization.fields
+  type InputTypesRegistration = keyof typeof app.forms.registration.fields
+  type InputTypesPasswordRequestUpdate = keyof typeof app.forms.passwordRequestUpdate.fields
+  type InputTypesPasswordUpdate = keyof typeof app.forms.passwordUpdate.fields
+
+  type Inputs<T extends InputTypes> = Readonly<Record<T, JSX.Element>>;
+
+  interface Validation {
+    isValid: boolean;
+  }
+
+  interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> { }
+  interface IFormAuthorizationProps extends IFormProps, Validation {
+    user: Api.UserAuthorization;
+  }
+  interface IFormRegistrationProps extends IFormProps, Validation {
+    user: Api.UserRegistration;
+  }
+  interface IFormPasswordRequestUpdateProps extends IFormProps, Validation {
+    user: Api.UserPasswordRequestUpdate;
+  }
+  interface IFormPasswordUpdateProps extends IFormProps, Validation {
+    user: Api.UserPasswordUpdate;
+  }
+
+
+  interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    value: string;
+    setValue: (value: string) => any;
+  }
+
+  interface IInputValidationProps extends IInputProps, Validation {
+    setIsValid: (value: boolean) => any;
+    setIsValidForm: (value: boolean) => any;
+  }
+
+  interface IInputAuthorizationEmailProps extends IInputValidationProps { }
+  interface IInputAuthorizationPasswordProps extends IInputValidationProps { }
+
+  interface IInputRegistrationFirstNameProps extends IInputValidationProps { }
+  interface IInputRegistrationLastNameProps extends IInputValidationProps { }
+  interface IInputRegistrationEmailProps extends IInputValidationProps { }
+  interface IInputRegistrationPasswordProps extends  IInputValidationProps {
+    setIsValidConfirmedPassword: (value: boolean) => any;
+  }
+  interface IInputRegistrationConfirmedPasswordProps extends IInputValidationProps { }
+  interface IInputRegistrationWantBeAdminProps extends IInputProps {
+    value: boolean;
+    setValue: (value: boolean) => any;
+  }
+
+  interface IInputPasswordRequestUpdateEmailProps extends IInputValidationProps { }
+
+  interface IInputPasswordUpdatePasswordProps extends IInputValidationProps {
+    setIsValidConfirmedPassword: (value: boolean) => any;
+  }
+  interface IInputPasswordUpdateComfirmedPasswordProps extends IInputValidationProps { }
+
+
+  interface IAppInputProps<T extends InputTypes> extends React.InputHTMLAttributes<HTMLInputElement> {
+    appType: T;
+  }
+
+  interface IAppInputWrapperProps<T extends InputTypes> extends React.InputHTMLAttributes<HTMLInputElement> {
+    appInputType: T;
   };
 
-  type InputNames =
-    | 'firstName'
-    | 'lastName'
-    | 'email'
-    | 'password'
-    | 'confirmedPassword';
-
-  type RegistrationInputNames = Extract<
-    InputNames,
-    | 'firstName'
-    | 'lastName'
-    | 'email'
-    | 'password'
-    | 'confirmedPassword'
-  >;
-
-  type InputDescriptions = {
-    [key in InputNames]: string;
+  type InputLabels = {
+    readonly [key in InputTypes]: string;
   }
-
-  type RegistrationInputs = {
-    [key in RegistrationInputNames]: JSX.Element;
-  }
-
-  type RegistrationState = {
-    [key in RegistrationInputNames]: string;
-  }
-
-  type InputWrappers = {
-    [key in InputNames]: JSX.Element;
-  }
-
-  type Inputs = {
-    [key in InputNames]: JSX.Element;
-  }
-
+  
   type ValidationSchemas = {
-    [key in InputNames]: yup.Schema<any> | null;
+    [key in InputTypes]: yup.Schema<any> | null;
   }
-
-  interface IFormProps {
-    type: FormNames;
-  }
-
-  interface IInputProps {
-    type: InputNames;
-  }
-  
-  interface IAppFormRegistrationProps extends FormHTMLAttributes<HTMLFormElement> { }
-
-  interface IAppInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    value: string;
-    isValid: boolean;
-    setValue: Function;
-    setIsValid: Function;
-  }
-
-  interface IAppInputFirstNameProps extends IAppInputProps { }
-  interface IAppInputLastNameProps extends IAppInputProps { }
-  interface IAppInputEmailProps extends IAppInputProps { }
-  interface IAppInputPasswordProps extends IAppInputProps { }
-  interface IAppInputConfirmedPasswordProps extends IAppInputProps { }
-  
-  interface IInputWrapperProps { 
-    inputName: InputNames;
-  }
-
-  type InputValidStatusClass = '' | 'is-valid'| 'is-invalid';
 }
+
 
 export = Form;
 export as namespace Form;
