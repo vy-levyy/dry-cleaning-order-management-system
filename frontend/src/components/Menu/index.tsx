@@ -2,11 +2,13 @@ import React from 'react';
 import getRole from './scripts/getRole';
 import getItemsByRole from './scripts/getItemsByRole';
 import MenuList from './MenuList';
+import { Role } from './types';
+import getActiveItem from './scripts/getActiveItem';
 
 const Menu: React.FunctionComponent = () => {
-  const role = getRole();
+  let role: Role | null = null;
 
-  console.log(getItemsByRole('unlogged'));
+  role = getRole();
 
   return (
     <div className="container">
@@ -21,8 +23,8 @@ const Menu: React.FunctionComponent = () => {
           Menu
         </button>
         <MenuList
-          list={ getItemsByRole('unlogged') }
-          activeItem={ 'signin' }
+          list={ getItemsByRole(role) }
+          activeItem={ getActiveItem() }
         />
       </div>
     </div>

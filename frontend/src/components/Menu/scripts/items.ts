@@ -2,27 +2,27 @@ const items = {
   signup: {
     name: 'signup',
     description: 'Sign up',
-    link: `${process.env.REACT_APP_BASE_URL}`,
+    link: 'registration',
   },
   signin: {
     name: 'signin',
     description: 'Sign ip',
-    link: `${process.env.REACT_APP_BASE_URL}`,
+    link: 'authorization',
   },
   passwordRecovery: {
     name: 'passwordRecovery',
     description: 'Password recovery',
-    link: `${process.env.REACT_APP_BASE_URL}`,
+    link: 'request-update-password',
   },
   cleaners: {
     name: 'cleaners',
     description: 'Cleaners',
-    link: `${process.env.REACT_APP_BASE_URL}`,
+    link: '',
   },
   myOrders: {
     name: 'myOrders',
     description: 'My orders',
-    link: `${process.env.REACT_APP_BASE_URL}`,
+    link: '',
   }
 }
 

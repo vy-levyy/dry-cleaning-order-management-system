@@ -3,30 +3,30 @@ import { Link } from 'react-router-dom';
 import { Item, ItemName } from '../types';
 
 type Props = {
-  list: Item[];
-  activeItem: ItemName;
+  list: Item[] | null;
+  activeItem: ItemName | null;
 }
 
 const MenuList: React.FunctionComponent<Props> = ({
   list,
   activeItem
 }) => {
-  const itemElements = list.map((item: Item, index) => {
+  const itemElements = list?.map((item: Item, index) => {
     const activeClass = activeItem === item.name ? 'active' : '';
 
     return (
-      <a
+      <Link
         className={ `dropdown-item ${ activeClass }` }
-        href={ item.link }
-        key={ index * 100 }
+        to={ { pathname: item.link } }
+        key={ item.description }
       >
         { item.description }
-      </a>
+      </Link>
     );
   });
   return (
     <div className="dropdown-menu">
-      { itemElements }
+      { itemElements || '' }
     </div>
   );
 }

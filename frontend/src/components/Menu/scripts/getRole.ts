@@ -1,5 +1,6 @@
-export default () => {
-  const role = 'unlogged';
+import { Role } from "../types";
+import { useSelector } from "react-redux";
 
-  return role;
+export default (): Role | null => {
+  return useSelector((state: { user: { role: Role | null } }) => state.user.role);
 }
