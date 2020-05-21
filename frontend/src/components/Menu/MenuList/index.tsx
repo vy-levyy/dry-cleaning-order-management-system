@@ -11,7 +11,7 @@ const MenuList: React.FunctionComponent<Props> = ({
   list,
   activeItem
 }) => {
-  const itemElements = list?.map((item: Item, index) => {
+  const itemElements = list?.map((item: Item) => {
     const activeClass = activeItem === item.name ? 'active' : '';
 
     return (

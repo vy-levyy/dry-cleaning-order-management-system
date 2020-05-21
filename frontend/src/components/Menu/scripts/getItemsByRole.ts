@@ -1,5 +1,7 @@
 import items from './items';
-import { ItemName, ItemsByRole, Role } from '../types';
+import { ItemName, ItemsByRole } from '../types';
+import { Role } from '../../../types';
+
 
 export default (role: Role | null) => {
   const itemsByRole: ItemsByRole = {

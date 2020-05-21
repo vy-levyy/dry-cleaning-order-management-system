@@ -1,7 +1,7 @@
 import {
   CHANGE_ROLE
 } from "./actions";
-import { Role } from "../../components/Menu/types";
+import { Role } from "../../types";
 
 type Action = {
   type: string;

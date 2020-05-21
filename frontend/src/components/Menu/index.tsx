@@ -1,8 +1,8 @@
 import React from 'react';
-import getRole from './scripts/getRole';
+import getRole from '../../scripts/getRole';
 import getItemsByRole from './scripts/getItemsByRole';
 import MenuList from './MenuList';
-import { Role } from './types';
+import { Role } from '../../types';
 import getActiveItem from './scripts/getActiveItem';
 
 const Menu: React.FunctionComponent = () => {

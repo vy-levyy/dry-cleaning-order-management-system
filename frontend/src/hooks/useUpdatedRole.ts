@@ -2,7 +2,8 @@ import userActions from '../redux/user/actions';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { userApi } from '../controller/api';
-import { Role } from '../components/Menu/types';
+import { Role } from '../types';
+import getToken from '../scripts/localStorage/getToken';
 
 export default () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default () => {
       }
   
       dispatch(userActions.setRole(role));
-    })()
+    })();
   }, [dispatch]);
 }
 
@@ -31,8 +32,3 @@ async function verify() {
 
   return result?.data?.candidate?.role;
 }
-
-function getToken(): string | null {
-  return localStorage.getItem('token');
-}
-

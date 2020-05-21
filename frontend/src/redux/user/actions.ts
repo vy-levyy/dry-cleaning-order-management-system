@@ -1,4 +1,4 @@
-import { Role } from "../../components/Menu/types";
+import { Role } from "../../types";
 
 export const CHANGE_ROLE = 'CHANGE_ROLE';
 

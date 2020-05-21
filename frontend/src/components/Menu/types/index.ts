@@ -1,13 +1,10 @@
 import items from '../scripts/items';
+import { Role } from '../../../types';
 
 export type Item = typeof items.signup;
 
 export type ItemName = keyof typeof items;
 
-export type Role = 'unlogged' | 'user' | 'admin';
-
 export type ItemsByRole = {
-  unlogged: ItemName[],
-  user: ItemName[],
-  admin: ItemName[]
+  [key in Role]: ItemName[];
 }
