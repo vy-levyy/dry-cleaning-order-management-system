@@ -14,7 +14,7 @@ const FormAuthorization: React.FunctionComponent<Form.IFormAuthorizationProps> =
 
     userApi.signin(user)
       .then((response: AxiosResponse) => {
-        localStorage.setItem('token', response.data?.token);
+        localStorage.setItem('token', response?.data?.token);
         console.log(response);
       });
   }
