@@ -6,9 +6,7 @@ const PageWrapper: React.FunctionComponent = ({ children }) => {
     <div className="container">
       <Header />
       <div className="row justify-content-center">
-        <div className="col">
-          { children }
-        </div>
+        { children }
       </div>
     </div>
   );
