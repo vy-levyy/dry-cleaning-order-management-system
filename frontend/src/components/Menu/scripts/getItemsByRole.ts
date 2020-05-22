@@ -7,7 +7,7 @@ export default (role: Role | null) => {
   const itemsByRole: ItemsByRole = {
     unlogged: ['signin', 'signup', 'passwordRecovery'],
     user: ['cleaners', 'myOrders'],
-    admin: ['cleaners', 'myOrders']
+    admin: ['cleaners', 'addCleaner']
   };
 
   if (role === null) {

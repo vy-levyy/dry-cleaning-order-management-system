@@ -6,7 +6,7 @@ const items = {
   },
   signin: {
     name: 'signin',
-    description: 'Sign ip',
+    description: 'Sign in',
     link: 'authorization',
   },
   passwordRecovery: {
@@ -23,8 +23,12 @@ const items = {
     name: 'myOrders',
     description: 'My orders',
     link: '',
+  },
+  addCleaner: {
+    name: 'addCleaner',
+    description: 'Add cleaner',
+    link: 'add-cleaner',
   }
 }
-
 
 export default items;

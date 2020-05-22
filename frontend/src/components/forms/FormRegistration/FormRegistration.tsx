@@ -3,6 +3,7 @@ import InputWrapper from './InputWrapper';
 import { userApi } from '../../../controller/api';
 import { AxiosResponse } from 'axios';
 import { Link } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 
 const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> = ({
   isValid,
@@ -14,14 +15,20 @@ const AppFormRegistration: React.FunctionComponent<Form.IFormRegistrationProps> 
 
     userApi.signup(user)
       .then((response: AxiosResponse) => {
-        localStorage.setItem('token', response.data?.token);
+        const token = response?.data?.token;
+
+        if (token) {
+          localStorage.setItem('token', token);
+          createBrowserHistory().go(0);
+        }
+
         console.log(response);
       });
   }
 
   return (
     <form
-      className="container col-10 col-md-8 col-lg-6 col-xl-4"
+      className="col-12 col-md-8 col-lg-6 col-xl-4"
       { ...attributes }
     >
       <InputWrapper appInputType="firstName" />

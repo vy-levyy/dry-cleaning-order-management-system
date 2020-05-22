@@ -1,5 +1,5 @@
 import React from 'react';
-import getRole from '../../scripts/getRole';
+import getRole from '../../hooks/useGetRole';
 import getItemsByRole from './scripts/getItemsByRole';
 import MenuList from './MenuList';
 import { Role } from '../../types';
@@ -25,7 +25,7 @@ const Menu: React.FunctionComponent = () => {
         list={ getItemsByRole(role) }
         activeItem={ getActiveItem() }
       />
-    </div>  
+    </div>
   );
 }
 

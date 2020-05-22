@@ -4,14 +4,18 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import useUpdatedRole from './hooks/useUpdatedRole';
+import useIsLoggedIn from './hooks/useIsLoggedIn';
+import PrivateRoute from './components/PrivateRoute';
 import PageAuthorization from './pages/PageAuthorization';
 import PageRegistration from './pages/PageRegistration';
 import PagePasswordRequestUpdate from './pages/PagePasswordRequestUpdate';
 import PagePasswordUpdate from './pages/PagePasswordUpdate';
-import useUpdatedRole from './hooks/useUpdatedRole';
+import PageAddCleaner from './pages/PageAddCleaner';
 
 const App: React.FunctionComponent = () => {
   useUpdatedRole();
+
   return (
     <Router>
       <Switch>
@@ -30,6 +34,12 @@ const App: React.FunctionComponent = () => {
         <Route path="/update-password" exact>
           <PagePasswordUpdate />
         </Route>
+        <PrivateRoute
+          path="/add-cleaner"
+          component={ PageAddCleaner }
+          isLoggedIn={ useIsLoggedIn() }
+          exact
+        />
       </Switch>
     </Router>
   );

@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const controller = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 30000,
-  // headers: { 'X-Access-Token': localStorage.getItem('token') }
+  timeout: 30000
 });
 
 controller.interceptors.response.use((response) => {
@@ -12,6 +11,8 @@ controller.interceptors.response.use((response) => {
   console.log(error.response)
   switch (error.response?.status) {
     case 401:
+      // fall through
+    case 403:
       // fall through
     case 404:
       // fall through

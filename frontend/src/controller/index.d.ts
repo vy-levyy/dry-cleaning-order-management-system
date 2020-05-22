@@ -1,3 +1,5 @@
+import { Gallery, Service } from '../components/forms/FormAddCleaner/types';
+
 declare namespace Api {
   interface Api {
     userApi: {
@@ -6,6 +8,10 @@ declare namespace Api {
       passwordRequestUpdate: (user: UserPasswordRequestUpdate) => Promise<any>;
       passwordUpdate: (user: UserPasswordUpdate) => Promise<any>;
       verify: (user: UserVerify) => Promise<any>;
+    },
+    cleanerApi: {
+      addCleaner: (data: CleanerDataAddCleaner) => Promise<any>;
+      gallery: (data: CleanerDataGallery) => Promise<any>;
     }
   }
 
@@ -34,5 +40,20 @@ declare namespace Api {
 
   interface UserVerify extends User {
     token: string | null;
+  }
+
+  interface CleanerDataAddCleaner {
+    token: string;
+    cleaner: {
+      name: string;
+      description: string;
+      gallery: Gallery[];
+      services: Service[];
+    }
+  }
+
+  interface CleanerDataGallery {
+    url: string;
+    format: string;
   }
 }

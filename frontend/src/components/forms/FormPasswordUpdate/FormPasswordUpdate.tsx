@@ -13,13 +13,13 @@ const FormPasswordUpdate: React.FunctionComponent<Form.IFormPasswordUpdateProps>
 
     userApi.passwordUpdate(user)
       .then((response: AxiosResponse) => {
-        console.log(response.data?.message)
+        console.log(response?.data?.message)
       });
   }
 
   return (
     <form
-      className="container col-10 col-md-8 col-lg-6 col-xl-4"
+      className="col-12 col-md-8 col-lg-6 col-xl-4"
       { ...attributes }
     >
       <InputWrapper appInputType="password" />
